@@ -1,6 +1,6 @@
 
 <template name="mainLayout">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-retro navbar-fixed-top">
       <div class="container-fluid">
           <div class="navbar-header">
               <a class="navbar-brand" href="#">Retrospectives</a>
@@ -14,13 +14,14 @@
           <p>&copy; 2015 BOOM, Inc.</p>
       </footer>
   </div>
+  {{>modalTemplate}}
 </template>
 
 <template name="lists">
     <div class="row">
         {{#each lists}}
         <div class="col-md-4">
-            <div class="panel panel-primary">
+            <div class="panel panel-primary panel-retro">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{Category}}</h3>
                 </div>
@@ -38,9 +39,14 @@
 
 <template name="item">
     {{#each items}}
-    <div class="well">
+    <div class="well" category-id="{{../_id}}">
         {{name}}
-        <div class="delete-item pull-right" category-id="{{../_id}}" ><span class="glyphicon glyphicon-trash"></span></div>
+        <div class="delete-item pull-right glyphicon glyphicon-trash" category-id="{{../_id}}"></div>
+        <hr>
+        <div>
+            <small>votes: {{votes}}</small>
+            <button type="button" class="btn btn-default btn-xs pull-right" id="voteItem" category-id="{{../_id}}" >+1</button>
+        </div>
     </div>
     {{/each}}
 </template>
@@ -52,16 +58,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Modal title</h4>
+                    <h4 class="modal-title">Edit</h4>
                 </div>
                 <div class="modal-body">
-                    <p>{{ item.name}}</p>
-                    <p>{{ name}}</p>
-                    <p>{{ item}}</p>
+                    <div class="form-group">
+                      <textarea class="form-control" rows="3" id="name">{{session "name"}}</textarea>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger pull-left  btn-sm">Remove note</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary saveItem">Save changes</button>
                 </div>
             </div>
         </div>

@@ -25,34 +25,30 @@ Template.lists.events({
     'keyup input'(event, instance) {
         event.preventDefault();
         if(event.which === 13){
-            let category = event.target.attributes['data-id'].value;
+            let categoryId = this._id;
             let text = event.target.value;
-            Lists.update(this._id , {
-                $push: {
-                    items: {
-                        "name": text,
-                        "owner" : "me",
-                        "votes" : 0
-                    }
-                },
-            });
+            Meteor.call('lists.insert', categoryId, text);
             event.target.value = '';
         }
     },
     'click .delete-item'(e) {
         e.stopPropagation();
         let id = e.target.attributes['category-id'].value;
-        Lists.update({ _id: id },
-            {
-                $pull : {items : this}
-            }
-        );
+        Meteor.call('lists.remove', id, this);
     },
     'click .well': function(e) {
         e.preventDefault();
-
+        Session.set("selectedCategory", e.target.attributes['category-id'].value);
+        Session.set("selectedItem", this);
         $('#modal').modal('show');
+    },
+
+    'click #voteItem': function(e) {
+        e.stopPropagation();
+        let id = e.target.attributes['category-id'].value;
+        Meteor.call('lists.vote', id, this);
     }
+
 
 
 });
@@ -60,5 +56,24 @@ Template.lists.events({
 Template.lists.helpers({
     lists() {
         return Lists.find({});
+    }
+});
+
+Template.modalTemplate.helpers({
+    session(input) {
+        return Session.get('selectedItem')[input];
+    }
+});
+
+Template.modalTemplate.events({
+    'click .saveItem': function(e, template) {
+        e.stopPropagation();
+        let category = Session.get('selectedCategory');
+        let item = Session.get('selectedItem');
+        let oldItemName = item.name;
+        let newVal = template.find("textarea").value;
+        item.name = newVal;
+        Meteor.call('lists.update', category, item, oldItemName);
+        $('#modal').modal('hide');
     }
 });
