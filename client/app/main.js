@@ -31,11 +31,6 @@ Template.lists.events({
             event.target.value = '';
         }
     },
-    'click .delete-item'(e) {
-        e.stopPropagation();
-        let id = e.target.attributes['category-id'].value;
-        Meteor.call('lists.remove', id, this);
-    },
     'click .well': function(e) {
         e.preventDefault();
         Session.set("selectedCategory", e.target.attributes['category-id'].value);
@@ -66,7 +61,7 @@ Template.modalTemplate.helpers({
 });
 
 Template.modalTemplate.events({
-    'click .saveItem': function(e, template) {
+    'click .saveItem': function(e) {
         e.stopPropagation();
         let category = Session.get('selectedCategory');
         let item = Session.get('selectedItem');
@@ -74,6 +69,13 @@ Template.modalTemplate.events({
         let newVal = template.find("textarea").value;
         item.name = newVal;
         Meteor.call('lists.update', category, item, oldItemName);
+        $('#modal').modal('hide');
+    },
+    'click .deleteItem': function(e) {
+        e.stopPropagation();
+        let category = Session.get('selectedCategory');
+        let item = Session.get('selectedItem');
+        Meteor.call('lists.remove', category, item);
         $('#modal').modal('hide');
     }
 });
