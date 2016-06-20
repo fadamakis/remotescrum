@@ -1,0 +1,52 @@
+
+<template name="board">
+    {{#each retro}}
+        <h4>{{title}}</h4>
+    {{/each}}
+
+    <div class="row">
+        {{#each category in categories}}
+        <div class="col-md-4">
+            <div class="panel panel-primary panel-retro">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{category.name}}</h3>
+                </div>
+                <div class="panel-body">
+                    {{> notesTemplate categoryId=category._id }}
+                    <div class="form-group">
+                        <input
+                        type="text"
+                        class="form-control"
+                        category-id="{{category._id}}"
+                        placeholder="Type new item here and press enter">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{>modalTemplate}}
+</template>
+
+<template name="modalTemplate">
+    <div class="modal fade" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Edit note</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                      <textarea class="form-control" rows="3" id="name">{{session "text"}}</textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger pull-left btn-sm deleteNote">Remove note</button>
+                    <button type="button" class="btn btn-primary saveNote">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

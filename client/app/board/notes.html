@@ -1,0 +1,14 @@
+
+<template name="notesTemplate">
+    {{#each notes}}
+    {{#if $eq ../categoryId categoryId}}
+    <div class="well">
+        {{text}}
+        <div>
+            <small>votes: {{votes}}</small>
+            <button type="button" class="btn btn-default btn-xs pull-right vote {{#if voted}}btn-primary{{/if}}">+1</button>
+        </div>
+    </div>
+    {{/if}}
+    {{/each}}
+</template>

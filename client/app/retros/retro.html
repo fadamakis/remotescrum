@@ -1,0 +1,34 @@
+
+<template name="retros">
+    <div class="text-right">
+        <a href="#" class="btn btn-primary createRetro">Create new retro</a>
+    </div>
+    <br>
+    {{#each retro in retros}}
+    <div class="well well-lg">
+        <a href="{{pathFor 'retro.show' _id=retro._id}}" title="{{retro.title}}">{{ retro.title }}</a>
+    </div>
+    {{/each}}
+    {{>retroModal}}
+</template>
+
+<template name="retroModal">
+    <div class="modal fade" id="retroModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Create New Retro</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                      <textarea class="form-control" rows="3" id="title"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary saveRetro">Create New Retro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

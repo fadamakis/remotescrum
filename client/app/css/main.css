@@ -1,0 +1,13 @@
+/* CSS declarations go here */
+body {
+    padding-top: 85px;
+    background: #eee;
+}
+.sortable-placeholder {
+    min-height: 75px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 10px rgba(0,0,0,0.05);
+}
