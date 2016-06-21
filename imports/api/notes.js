@@ -11,7 +11,8 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'notes.insert'(categoryId, retroId, text) {
+    'notes.insert'(categoryId, retroId, text, username) {
+        check(username, String);
         check(text, String);
         Notes.insert({
             text,
@@ -19,7 +20,7 @@ Meteor.methods({
             categoryId,
             retroId,
             owner: 'me',
-            username: 'username',
+            username: username,
             "votes" : 1,
             "voted" : true
         });

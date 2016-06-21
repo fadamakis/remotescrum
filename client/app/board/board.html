@@ -1,7 +1,7 @@
 
 <template name="board">
     {{#each retro}}
-        <h4>{{title}}</h4>
+    <h4>{{title}}</h4>
     {{/each}}
 
     <div class="row">
@@ -26,6 +26,7 @@
         {{/each}}
     </div>
     {{>modalTemplate}}
+    {{>fullScreenModal}}
 </template>
 
 <template name="modalTemplate">
@@ -38,7 +39,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                      <textarea class="form-control" rows="3" id="name">{{session "text"}}</textarea>
+                        <textarea class="form-control" rows="3" id="name">{{session "text"}}</textarea>
                     </div>
 
                 </div>

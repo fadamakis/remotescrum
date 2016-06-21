@@ -3,10 +3,14 @@
     {{#each notes}}
     {{#if $eq ../categoryId categoryId}}
     <div class="well">
-        {{text}}
+        <button type="button" class="btn btn-default btn-xs pull-right vote {{#if voted}}btn-primary{{/if}}">+1</button>
+        <p>
+            {{text}}
+        </p>
+        <hr>
         <div>
             <small>votes: {{votes}}</small>
-            <button type="button" class="btn btn-default btn-xs pull-right vote {{#if voted}}btn-primary{{/if}}">+1</button>
+            <small class="pull-right">added by: {{username}}</small>
         </div>
     </div>
     {{/if}}

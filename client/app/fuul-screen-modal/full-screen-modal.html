@@ -1,0 +1,25 @@
+
+<template name="fullScreenModal">
+    <div class="modal fade fullscreen {{#if shouldShowUsernamePrompt}} show in{{/if}}" id="fullScreenModal"  tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <div class="jumbotron">
+                            <h2>Hi there!</h2>
+                            <p>You have been invited to join <b>{{retro.title}}</b>.</p>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control usernameInput" placeholder="Please add your name to continue">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary joinRetro" type="button">Join {{retro.title}}</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

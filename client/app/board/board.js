@@ -42,7 +42,8 @@ Template.board.events({
             let categoryId = event.target.attributes['category-id'].value;
             let retroId = FlowRouter.getParam('_id');
             let text = event.target.value;
-            Meteor.call('notes.insert', categoryId, retroId, text);
+            let username = localStorage.getItem('username');
+            Meteor.call('notes.insert', categoryId, retroId, text, username);
             event.target.value = '';
         }
     },
