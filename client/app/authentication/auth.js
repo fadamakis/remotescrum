@@ -1,12 +1,12 @@
 Template.loginModal.events({
-    'click .register-link' : function(e, t){
+    'click .register-link' : function(event, templateInstance){
         $('#login-modal').modal('hide');
         $('#register-modal').modal('show');
     },
-    'submit .login-form' : function(e, t){
-        e.preventDefault();
-        var email = t.find('#login-email').value.trim(),
-        password = t.find('#login-password').value.trim();
+    'submit .login-form' : function(event, templateInstance){
+        event.preventDefault();
+        var email = templateInstance.find('#login-email').value.trim(),
+        password = templateInstance.find('#login-password').value.trim();
         Meteor.loginWithPassword(email, password, function(err){
             if (err) {
                 $.bootstrapGrowl(err.reason, {
@@ -22,15 +22,15 @@ Template.loginModal.events({
 });
 
 Template.registerModal.events({
-    'click .login-link' : function(e, t){
+    'click .login-link' : function(event, templateInstance){
         $('#register-modal').modal('hide');
         $('#login-modal').modal('show');
     },
-    'submit .register-form' : function(e, t){
-        e.preventDefault();
-        var email = t.find('#register-email').value.trim(),
-        password = t.find('#register-password').value.trim(),
-        fullname = t.find('#fullname').value.trim();
+    'submit .register-form' : function(event, templateInstance){
+        event.preventDefault();
+        var email = templateInstance.find('#register-email').value.trim(),
+        password = templateInstance.find('#register-password').value.trim(),
+        fullname = templateInstance.find('#fullname').value.trim();
         if(!fullname) {
             $.bootstrapGrowl('Please add your name.', {
                 type: 'danger',
@@ -41,7 +41,7 @@ Template.registerModal.events({
             email: email,
             password : password,
             profile: {
-                fullname,
+                fullname
             }
         }, function(err){
             if (err) {
@@ -58,10 +58,10 @@ Template.registerModal.events({
 });
 
 Template.mainLayout.events({
-    'click .logout' : function(e, t){
-        e.preventDefault();
+    'click .logout' : function(event, templateInstance){
+        event.preventDefault();
         Meteor.logout(function(err) {
-            Session.set("username", null);
+            localStorage.setItem('username', null);
             FlowRouter.go("/");
         });
     }

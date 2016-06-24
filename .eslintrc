@@ -1,0 +1,12 @@
+{
+    "plugins": [
+        "meteor"
+    ],
+    "extends": [
+        "plugin:meteor/recommended"
+    ],
+    "ecmaFeatures": {
+        "modules": true
+    },
+    "parser": "babel-eslint"
+}

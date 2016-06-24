@@ -1,7 +1,10 @@
+import { ReactiveVar } from 'meteor/reactive-var';
 import { Template } from 'meteor/templating';
 import { Retros } from '/imports/api/retros.js';
 import { Notes } from '/imports/api/notes.js';
 import { Categories } from '/imports/api/categories.js';
+
+let selectedNote = new ReactiveVar();
 
 Template.board.onCreated( function() {
     let template = Template.instance();
@@ -33,10 +36,8 @@ Template.notesTemplate.helpers({
     }
 });
 
-
-
 Template.board.events({
-    'keyup input'(event, instance) {
+    'keyup input'(event, templateInstance) {
         event.preventDefault();
         if(event.which === 13){
             let text = event.target.value.trim();
@@ -48,37 +49,36 @@ Template.board.events({
             event.target.value = '';
         }
     },
-    'dblclick .well': function(e) {
-        e.preventDefault();
-        Session.set("selectedNote", this);
+    'dblclick .well': function(event) {
+        event.preventDefault();
+        selectedNote.set(this);
         $('#modal').modal('show');
     },
 
-    'click .vote': function(e) {
-        e.stopPropagation();
+    'click .vote': function(event) {
+        event.stopPropagation();
         Meteor.call('notes.vote', this);
     }
 });
 
-
 Template.modalTemplate.helpers({
-    session(input) {
-        return Session.get('selectedNote')[input];
+    selectedNote() {
+        return selectedNote.get();
     }
 });
 
 Template.modalTemplate.events({
-    'click .saveNote': function(e, template) {
-        e.stopPropagation();
-        let note = Session.get('selectedNote');
-        let newText = template.find("textarea").value.trim();
+    'click .saveNote': function(event, templateInstance) {
+        event.stopPropagation();
+        let note = selectedNote.get();
+        let newText = templateInstance.find("textarea").value.trim();
         if(!newText) return;
         Meteor.call('notes.update', note, newText);
         $('#modal').modal('hide');
     },
-    'click .deleteNote': function(e) {
-        e.stopPropagation();
-        let note = Session.get('selectedNote');
+    'click .deleteNote': function(event) {
+        event.stopPropagation();
+        let note = selectedNote.get();
         Meteor.call('notes.remove', note);
         $('#modal').modal('hide');
     }

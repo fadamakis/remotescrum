@@ -18,9 +18,9 @@ Template.fullScreenModal.helpers({
 });
 
 Template.fullScreenModal.events({
-    'click .joinRetro': function(e, template) {
-        e.preventDefault();
-        let username = template.find(".usernameInput").value;
+    'click .joinRetro': function(event, templateInstance) {
+        event.preventDefault();
+        let username = templateInstance.find(".usernameInput").value;
         if(username){
             localStorage.setItem('username', username);
             $('#fullScreenModal').removeClass('in');
