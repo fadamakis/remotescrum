@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Retros } from '/imports/api/retros.js';
 import { Notes } from '/imports/api/notes.js';
 import { Categories } from '/imports/api/categories.js';
+import { check } from 'meteor/check';
 
 Meteor.publish( 'retros', function() {
     return Retros.find({ owner: this.userId }, {sort: {createdAt: -1}});
