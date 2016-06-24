@@ -1,0 +1,33 @@
+<template name="registerModal">
+    <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="auth-container">
+                <h4>Register</h4>
+                <form>
+                    <div class="form-group">
+                        <label class="control-label" for="register-email">Your Name</label>
+                        <input class="form-control" id="fullname" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="register-email">Email</label>
+                        <input class="form-control" id="register-email" type="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="register-password">Password</label>
+                        <input class="form-control" id="register-password" type="password">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block btn-register">Register</button>
+                    </div>
+                </form>
+
+                <div class="auth-help">
+                    <a href="#" class="login-link">Already have an account?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

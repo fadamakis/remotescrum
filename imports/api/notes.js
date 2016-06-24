@@ -4,23 +4,17 @@ import { check } from 'meteor/check';
 
 export const Notes = new Mongo.Collection("Notes");
 
-if (Meteor.isServer) {
-    Meteor.publish( 'notes', () => {
-        return Notes.find({});
-    });
-}
-
 Meteor.methods({
     'notes.insert'(categoryId, retroId, text, username) {
         check(username, String);
         check(text, String);
+
         Notes.insert({
             text,
             createdAt: new Date(),
             categoryId,
             retroId,
-            owner: 'me',
-            username: username,
+            owner: username,
             "votes" : 1,
             "voted" : true
         });

@@ -24,3 +24,6 @@ session
 themeteorchef:html5-sortable
 arillo:flow-router-helpers
 raix:handlebar-helpers
+ian:accounts-ui-bootstrap-3
+accounts-base
+accounts-password

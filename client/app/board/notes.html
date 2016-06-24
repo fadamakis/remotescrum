@@ -1,4 +1,3 @@
-
 <template name="notesTemplate">
     {{#each notes}}
     {{#if $eq ../categoryId categoryId}}
@@ -10,7 +9,7 @@
         <hr>
         <div>
             <small>votes: {{votes}}</small>
-            <small class="pull-right">added by: {{username}}</small>
+            <small class="pull-right">added by: {{owner}}</small>
         </div>
     </div>
     {{/if}}

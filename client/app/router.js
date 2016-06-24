@@ -10,3 +10,9 @@ FlowRouter.route('/retros', {
         BlazeLayout.render("mainLayout", {content: "retros"});
     }
 });
+
+FlowRouter.route('/', {
+    action: function() {
+        BlazeLayout.render("mainLayout", {content: "landing"});
+    }
+});

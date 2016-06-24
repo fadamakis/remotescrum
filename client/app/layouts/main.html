@@ -1,13 +1,26 @@
 
 <template name="mainLayout">
-  <nav class="navbar navbar-inverse navbar-retro navbar-fixed-top">
-      <div class="container-fluid">
-          <div class="navbar-header">
-              <a class="navbar-brand" href="{{pathFor '/retros'}}">Retrospectives</a>
-          </div>
-      </div>
-  </nav>
-  <div class="container-fluid">
-      {{>Template.dynamic template=content}}
-  </div>
+    <nav class="navbar navbar-inverse navbar-retro navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{pathFor '/'}}">Retrospectives</a>
+            </div>
+            {{#if currentUser}}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Hey {{currentUser.profile.fullname}}!</a></li>
+                <li><a href="#" class="logout">Logout</a></li>
+            </ul>
+            {{ else }}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a> </li>
+                <li><a href="#" data-toggle="modal" data-target="#register-modal">Register</a></li>
+            </ul>
+            {{/if}}
+        </div>
+    </nav>
+    <div class="container-fluid">
+        {{>Template.dynamic template=content}}
+    </div>
+    {{> loginModal }}
+    {{> registerModal }}
 </template>
