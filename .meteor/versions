@@ -58,6 +58,7 @@ modules@0.6.2-beta.1
 modules-runtime@0.6.4-beta.1
 mongo@1.1.8-beta.1
 mongo-id@1.0.5-beta.1
+mrt:bootstrap-growl@0.1.4
 msavin:mongol@1.6.2
 npm-bcrypt@0.8.6_1
 npm-mongo@1.4.44-beta.1

@@ -6,9 +6,10 @@ export const Notes = new Mongo.Collection("Notes");
 
 Meteor.methods({
     'notes.insert'(categoryId, retroId, text, username) {
+        check(categoryId, String);
+        check(retroId, String);
         check(username, String);
         check(text, String);
-
         Notes.insert({
             text,
             createdAt: new Date(),
@@ -33,6 +34,7 @@ Meteor.methods({
         Notes.remove(note._id);
     },
     'notes.update'(note, newText) {
+        check(newText, String);
         note.text = newText;
         Notes.update({ '_id': note._id }, note);
     }

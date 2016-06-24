@@ -39,9 +39,10 @@ Template.board.events({
     'keyup input'(event, instance) {
         event.preventDefault();
         if(event.which === 13){
+            let text = event.target.value.trim();
+            if(!text) return;
             let categoryId = event.target.attributes['category-id'].value;
             let retroId = FlowRouter.getParam('_id');
-            let text = event.target.value;
             let username = localStorage.getItem('username');
             Meteor.call('notes.insert', categoryId, retroId, text, username);
             event.target.value = '';
@@ -70,7 +71,8 @@ Template.modalTemplate.events({
     'click .saveNote': function(e, template) {
         e.stopPropagation();
         let note = Session.get('selectedNote');
-        let newText = template.find("textarea").value;
+        let newText = template.find("textarea").value.trim();
+        if(!newText) return;
         Meteor.call('notes.update', note, newText);
         $('#modal').modal('hide');
     },

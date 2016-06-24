@@ -14,7 +14,8 @@ Template.retros.events({
     },
     'click .saveRetro'(e, template) {
         e.stopPropagation();
-        let title = template.find("textarea").value;
+        let title = template.find("textarea").value.trim();
+        if(!title) return;
         Meteor.call('retros.insert', title);
         template.find("textarea").value = '';
         $('#retroModal').modal('hide');
