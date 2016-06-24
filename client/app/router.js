@@ -7,7 +7,11 @@ FlowRouter.route('/retro/:_id', {
 
 FlowRouter.route('/retros', {
     action: function() {
-        BlazeLayout.render("mainLayout", {content: "retros"});
+        if(Meteor.userId()) {
+            BlazeLayout.render("mainLayout", {content: "retros"});
+        } else {
+            FlowRouter.go("/");
+        }
     }
 });
 
