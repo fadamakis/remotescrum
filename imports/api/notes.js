@@ -21,6 +21,7 @@ Meteor.methods({
         });
     },
     'notes.vote'(note) {
+        check(note, Object);
         if(!note.voted){
             note.votes++;
             note.voted = true;
@@ -31,9 +32,11 @@ Meteor.methods({
         Notes.update({ '_id': note._id }, note);
     },
     'notes.remove'(note) {
+        check(note, Object);
         Notes.remove(note._id);
     },
     'notes.update'(note, newText) {
+        check(note, Object);
         check(newText, String);
         note.text = newText;
         Notes.update({ '_id': note._id }, note);

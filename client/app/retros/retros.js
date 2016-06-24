@@ -23,6 +23,6 @@ Template.retros.events({
 
 Template.retros.helpers({
     retros() {
-        return Retros.find({});
+        return Retros.find({}, {sort: {createdAt: -1}});
     }
 });
