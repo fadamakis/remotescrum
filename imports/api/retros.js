@@ -12,5 +12,15 @@ Meteor.methods({
             createdAt: new Date(),
             owner: Meteor.userId(),
         });
-    }
+    },
+    'retros.update'(retro, newText) {
+        check(retro, Object);
+        check(newText, String);
+        retro.title = newText;
+        Retros.update({ '_id': retro._id }, retro);
+    },
+    'retros.remove'(retro) {
+        check(retro, Object);
+        Retros.remove(retro._id);
+    },
 });

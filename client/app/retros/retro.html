@@ -6,9 +6,9 @@
     </div>
     <h2>Hey {{currentUser.profile.fullname}}!</h2>
     <br>
-    {{#each retro in retros}}
+    {{#each retros}}
     <div class="well well-lg">
-        <a href="{{pathFor 'retro.show' _id=retro._id}}" title="{{retro.title}}">{{ retro.title }}</a>
+        <a href="{{pathFor 'retro.show' _id=_id}}" title="{{title}}">{{ title }}</a>
     </div>
     {{else}}
     <div class="text-center">
@@ -18,6 +18,7 @@
     {{/each}}
     </div>
     {{>retroModal}}
+    {{>retroModalEdit}}
 </template>
 
 <template name="retroModal">
@@ -35,6 +36,28 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary saveRetro">Create New Retro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="retroModalEdit">
+    <div class="modal fade" id="retroModalEdit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Edit Retro</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                      <textarea class="form-control" rows="3" id="title">{{selectedRetro.title}}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger pull-left btn-sm deleteRetro">Remove retro</button>
+                    <button type="button" class="btn btn-primary updateRetro">Save changes</button>
                 </div>
             </div>
         </div>

@@ -54,7 +54,6 @@ Template.board.events({
         selectedNote.set(this);
         $('#modal').modal('show');
     },
-
     'click .vote': function(event) {
         event.stopPropagation();
         Meteor.call('notes.vote', this);
