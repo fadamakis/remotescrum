@@ -28,3 +28,4 @@ ian:accounts-ui-bootstrap-3
 accounts-base
 accounts-password
 mrt:bootstrap-growl
+momentjs:moment

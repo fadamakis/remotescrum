@@ -63,6 +63,9 @@ Template.board.events({
 Template.modalTemplate.helpers({
     selectedNote() {
         return selectedNote.get();
+    },
+    moment(createdAt){
+        return moment(createdAt).fromNow();
     }
 });
 
