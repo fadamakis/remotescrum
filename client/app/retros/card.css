@@ -1,0 +1,66 @@
+.card {
+    display: block;
+    background: #fefefe;
+    color: #666666;
+    font-size: 18px;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-right: solid 3px #fefefe;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 200px;
+}
+
+.card:hover{
+    text-decoration: none;
+    color: #666;
+    border-color: #2196f3;
+}
+.card--material {
+    -webkit-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+       -moz-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+            box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+}
+
+.card--material:hover {
+    box-shadow: none;
+}
+.card--fold::after {
+    width: 0;
+    height: 0;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    display: block;
+    position: absolute;
+    border-style: solid;
+    border-width: 20px 20px 0 0;
+    border-color: #2196f3 transparent transparent transparent;
+}
+.card--fold::before {
+    width: 0;
+    height: 0;
+	right: 0;
+	bottom: 0;
+	content: " ";
+	display: block;
+	position: absolute;
+    border-bottom: 20px solid #eee;
+	border-right: 0 solid transparent;
+	border-left: 20px solid transparent;
+	border-left-style: inset;
+	border-bottom-style: inset;
+}
+
+.card:hover .card-actions{
+    display: block;
+}
+.card-actions {
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 28px;
+}

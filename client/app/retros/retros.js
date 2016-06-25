@@ -14,7 +14,7 @@ Template.retros.events({
         event.preventDefault();
         $('#retroModal').modal('show');
     },
-    'dblclick .well': function(event, templateInstance) {
+    'click .retro-edit': function(event, templateInstance) {
         event.preventDefault();
         selectedRetro.set(this);
         $('#retroModalEdit').modal('show');
