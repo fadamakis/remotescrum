@@ -1,10 +1,10 @@
 
 <template name="retros">
     <div class="container">
-        <div class="text-right">
+
+        <div class="create-retro-wrapper">
             <a href="#" class="btn btn-primary createRetro">Create new retro</a>
         </div>
-        <br>
         {{#each retros}}
         <a href="{{pathFor 'retro.show' _id=_id}}" title="{{title}}" class="card card--material">
             {{ title }}

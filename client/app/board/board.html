@@ -1,9 +1,8 @@
 
 <template name="board">
     {{#each retro}}
-    <h4>{{title}}</h4>
+    <h4 class="board-title">{{title}}</h4>
     {{/each}}
-
     <div class="row">
         {{#each category in categories}}
         <div class="col-md-4">

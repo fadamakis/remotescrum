@@ -61,7 +61,7 @@ Template.mainLayout.events({
     'click .logout' : function(event, templateInstance){
         event.preventDefault();
         Meteor.logout(function(err) {
-            localStorage.setItem('username', null);
+            localStorage.removeItem('username');
             FlowRouter.go("/");
         });
     }

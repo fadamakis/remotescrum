@@ -1,3 +1,9 @@
+h4.board-title {
+    font-size: 28px;
+    font-weight: 300;
+    text-align: center;
+}
+
 .note.well {
     word-wrap: break-word;
     border: 1px solid #eee;
