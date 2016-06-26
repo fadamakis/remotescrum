@@ -25,6 +25,14 @@ body {
 textarea {
     resize: none;
 }
+.modal-header {
+    background: #eeeeee;
+    border-bottom: 1px solid #ccc;
+}
+.modal-footer {
+    background: #eeeeee;
+    border-top: 1px solid #ccc;
+}
 
 .footer {
     position: absolute;
