@@ -15,7 +15,7 @@ Template.loginModal.events({
             } else {
                 $('#login-modal').modal('hide');
                 localStorage.setItem('username', Meteor.user().profile.fullname);
-                FlowRouter.go("/retros");
+                FlowRouter.go("/retrospectives");
             }
         });
     }
@@ -50,7 +50,7 @@ Template.registerModal.events({
                 });
             } else {
                 localStorage.setItem('username', fullname);
-                FlowRouter.go("/retros");
+                FlowRouter.go("/retrospectives");
                 $('#register-modal').modal('hide');
             }
         });
