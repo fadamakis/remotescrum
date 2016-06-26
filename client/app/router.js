@@ -17,6 +17,6 @@ FlowRouter.route('/retros', {
 
 FlowRouter.route('/', {
     action: function() {
-        BlazeLayout.render("mainLayout", {content: "landing"});
+        BlazeLayout.render("mainLayout", {content: "landing", footer: "landing-footer"});
     }
 });
