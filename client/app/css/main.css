@@ -9,6 +9,10 @@ body {
     background: #eee;
 }
 
+.btn:focus {
+  outline: none!important;
+}
+
 .sortable-placeholder {
     min-height: 75px;
     margin-bottom: 20px;

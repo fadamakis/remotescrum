@@ -1,0 +1,9 @@
+.note.well {
+    word-wrap: break-word;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+input.form-control.new-note {
+    font-size: 14px;
+}

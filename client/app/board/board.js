@@ -37,7 +37,7 @@ Template.notesTemplate.helpers({
 });
 
 Template.board.events({
-    'keyup input'(event, templateInstance) {
+    'keyup .new-note'(event, templateInstance) {
         event.preventDefault();
         if(event.which === 13){
             let text = event.target.value.trim();
