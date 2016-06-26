@@ -5,10 +5,11 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
                     <div class="container">
+                        {{#if Template.subscriptionsReady}}
                         <div class="jumbotron">
-                            <h2>Hi there!</h2>
+                            <h2>Hiya!</h2>
                             <p>You have been invited to join <b>{{retro.title}}</b>.</p>
-                            <div class="form-group">
+                            <div class="form-group fullScreenModalForm">
                                 <div class="input-group">
                                     <input type="text" class="form-control usernameInput" placeholder="Please add your name to continue">
                                     <span class="input-group-btn">
@@ -17,6 +18,9 @@
                                 </div>
                             </div>
                         </div>
+                        {{else}}
+                        {{> loader}}
+                        {{/if}}
                     </div>
                 </div>
             </div>

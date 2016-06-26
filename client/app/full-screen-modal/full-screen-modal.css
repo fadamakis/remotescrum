@@ -40,3 +40,8 @@
         font-weight: 700;
     }
 }
+
+.fullScreenModalForm {
+    max-width: 650px;
+    margin: 0 auto;
+}

@@ -1,5 +1,5 @@
-
 <template name="board">
+    {{#if Template.subscriptionsReady}}
     {{#each retro}}
     <h4 class="board-title">{{title}}</h4>
     {{/each}}
@@ -24,6 +24,10 @@
         </div>
         {{/each}}
     </div>
+    {{else}}
+        {{> loader}}
+    {{/if}}
+
     {{>modalTemplate}}
     {{>fullScreenModal}}
 </template>
