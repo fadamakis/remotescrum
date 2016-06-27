@@ -26,12 +26,16 @@ textarea {
     resize: none;
 }
 .modal-header {
-    background: #eeeeee;
-    border-bottom: 1px solid #ccc;
+    background: #0d87e9;
+}
+.modal-header h4{
+    color: white;
+}
+.modal-header .close{
+    color: white;
 }
 .modal-footer {
-    background: #eeeeee;
-    border-top: 1px solid #ccc;
+    background: #efefef;
 }
 
 .footer {
