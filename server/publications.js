@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Retros } from '/imports/api/retros.js';
 import { Notes } from '/imports/api/notes.js';
-import { Categories } from '/imports/api/categories.js';
 import { check } from 'meteor/check';
 
 Meteor.publish( 'retros', function() {
@@ -15,8 +14,4 @@ Meteor.publish( 'currentRetro', function(id) {
 
 Meteor.publish( 'notes', function() {
     return Notes.find({});
-});
-
-Meteor.publish( 'categories', function() {
-    return Categories.find({});
 });

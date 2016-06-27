@@ -2,13 +2,11 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Template } from 'meteor/templating';
 import { Retros } from '/imports/api/retros.js';
 import { Notes } from '/imports/api/notes.js';
-import { Categories } from '/imports/api/categories.js';
 
 let selectedNote = new ReactiveVar();
 
 Template.board.onCreated( function() {
     let template = Template.instance();
-    template.subscribe('categories');
     template.subscribe('notes');
 
     var self = this;
@@ -20,7 +18,20 @@ Template.board.onCreated( function() {
 
 Template.board.helpers({
     categories() {
-        return Categories.find({});
+        let categories = [{
+            "_id": "good",
+            "name": "What went well",
+            "order": 1
+        },{
+            "_id": "bad",
+            "name": "What didn't go well",
+            "order": 2
+        },{
+            "_id": "actions",
+            "name": "Action items",
+            "order": 3
+        }];
+        return categories;
     },
     notes() {
         return Notes.find({});
