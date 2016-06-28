@@ -15,6 +15,12 @@ body {
     top: -8px;
 }
 
+.navbar-inverse .navbar-toggle .icon-bar,
+.navbar-inverse .navbar-toggle .icon-bar
+{
+    background-color: #fff;
+}
+
 .btn:focus {
     outline: none!important;
 }

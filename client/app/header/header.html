@@ -1,20 +1,30 @@
 <template name="header">
-<nav class="navbar navbar-inverse navbar-retro navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-retro navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{pathFor '/'}}"><img src="/logo.png" class="logo" alt=""></a>
+                {{#if currentUser}}
+                <button type="button" class="navbar-toggle navbar-inverse collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                {{/if}}
             </div>
             {{#if currentUser}}
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hey {{currentUser.profile.fullname}} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/retrospectives">My Retrospectives</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#" class="logout">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hey {{currentUser.profile.fullname}} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/retrospectives">My Retrospectives</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" class="logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
             {{/if}}
         </div>
     </nav>
