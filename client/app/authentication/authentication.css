@@ -1,6 +1,10 @@
+.modal-wrapper--auth {
+    max-width: 350px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+}
 .auth-container {
     padding: 15px 30px;
-    max-width: 350px;
     width: 100% !important;
     background-color: #F7F7F7;
     margin: 0 auto;
