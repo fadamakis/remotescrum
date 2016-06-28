@@ -9,6 +9,12 @@ body {
     background: #eee;
 }
 
+.logo{
+    height: 36px;
+    position:relative;
+    top: -8px;
+}
+
 .btn:focus {
     outline: none!important;
 }
