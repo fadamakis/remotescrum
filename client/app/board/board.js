@@ -7,12 +7,11 @@ let selectedNote = new ReactiveVar();
 
 Template.board.onCreated( function() {
     let template = Template.instance();
-    template.subscribe('notes');
-
     var self = this;
     self.autorun(function() {
         let retroId = FlowRouter.getParam('_id');
         self.subscribe('currentRetro', retroId);
+        self.subscribe('notes', retroId);
     });
 });
 

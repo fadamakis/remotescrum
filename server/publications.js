@@ -12,6 +12,7 @@ Meteor.publish( 'currentRetro', function(id) {
     return Retros.find({_id: id});
 });
 
-Meteor.publish( 'notes', function() {
-    return Notes.find({});
+Meteor.publish( 'notes', function(id) {
+    check(id, String);
+    return Notes.find({retroId : id});
 });
