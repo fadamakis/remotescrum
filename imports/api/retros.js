@@ -17,10 +17,12 @@ Meteor.methods({
         check(retro, Object);
         check(newText, String);
         retro.title = newText;
+        check(this.userId, retro.owner);
         Retros.update({ '_id': retro._id }, retro);
     },
     'retros.remove'(retro) {
         check(retro, Object);
+        check(this.userId, retro.owner);
         Retros.remove(retro._id);
     },
 });
