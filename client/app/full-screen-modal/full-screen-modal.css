@@ -18,6 +18,10 @@
     overflow:auto;
 }
 
+.fullscreen .logo {
+    height: auto
+}
+
 .fullscreen .modal-body p {
     color: #333;
     font-size: 300%;
