@@ -67,7 +67,8 @@ Template.board.events({
     },
     'click .vote': function(event) {
         event.stopPropagation();
-        Meteor.call('notes.vote', this);
+        let username = localStorage.getItem('username');
+        Meteor.call('notes.vote', this, username);
     }
 });
 
@@ -86,7 +87,8 @@ Template.modalTemplate.events({
         let note = selectedNote.get();
         let newText = templateInstance.find("textarea").value.trim();
         if(!newText) return;
-        Meteor.call('notes.update', note, newText);
+        let username = localStorage.getItem('username');
+        Meteor.call('notes.update', note, newText, username);
         $('#modal').modal('hide');
     },
     'click .deleteNote': function(event) {

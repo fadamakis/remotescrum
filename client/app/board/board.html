@@ -45,7 +45,11 @@
                         <textarea class="form-control" rows="3" id="name">{{selectedNote.text}}</textarea>
                     </div>
                     <div class="text-right text-muted">
-                        <small>Added by {{selectedNote.owner}} {{moment selectedNote.createdAt}}</small>
+                        {{#if selectedNote.updatedBy}}
+                            <small>Updated by {{selectedNote.updatedBy}} {{moment selectedNote.updatedAt}}</small>
+                        {{else}}
+                            <small>Added by {{selectedNote.addedBy}} {{moment selectedNote.createdAt}}</small>
+                        {{/if}}
                     </div>
                 </div>
                 <div class="modal-footer">

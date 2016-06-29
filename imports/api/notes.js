@@ -13,21 +13,22 @@ Meteor.methods({
         Notes.insert({
             text,
             createdAt: new Date(),
+            updatedAt: null,
             categoryId,
             retroId,
-            owner: username,
-            "votes" : 1,
-            "voted" : true
+            addedBy: username,
+            updatedBy: null,
+            voters : [username]
         });
     },
-    'notes.vote'(note) {
+    'notes.vote'(note, user) {
         check(note, Object);
-        if(!note.voted){
-            note.votes++;
-            note.voted = true;
+        check(user, String);
+        let userPosition = note.voters.indexOf(user);
+        if(userPosition > -1){
+            note.voters.splice(userPosition, 1);
         } else {
-            note.votes--;
-            note.voted = false;
+            note.voters.push(user);
         }
         Notes.update({ '_id': note._id }, note);
     },
@@ -35,10 +36,13 @@ Meteor.methods({
         check(note, Object);
         Notes.remove(note._id);
     },
-    'notes.update'(note, newText) {
+    'notes.update'(note, newText, username) {
         check(note, Object);
         check(newText, String);
+        check(username, String);
         note.text = newText;
+        note.updatedBy = username;
+        note.updatedAt = new Date();
         Notes.update({ '_id': note._id }, note);
     }
 });
