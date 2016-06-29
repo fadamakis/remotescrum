@@ -64,6 +64,7 @@ msavin:mongol@1.6.2
 npm-bcrypt@0.8.6_1
 npm-mongo@1.4.44_1
 observe-sequence@1.0.12
+okgrow:analytics@1.0.9
 ordered-dict@1.0.8
 promise@0.7.2_1
 raix:handlebar-helpers@0.2.5
