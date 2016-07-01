@@ -12,9 +12,11 @@ h4.board-title {
 
 .note .vote{
     color: inherit;
+    opacity: .75;
 }
+.note .vote:hover,
 .note .vote.active{
-    color: #2196f3;
+    opacity: 1;
 }
 
 input.form-control.new-note {
