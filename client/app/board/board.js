@@ -43,6 +43,10 @@ Template.board.helpers({
 Template.notesTemplate.helpers({
     notes() {
         return Notes.find({retroId : FlowRouter.getParam('_id')});
+    },
+    haveVoted(note){
+        let username = localStorage.getItem('username');
+        return note.voters.indexOf(username) > -1 ? 'active': '';
     }
 });
 

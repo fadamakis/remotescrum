@@ -10,6 +10,13 @@ h4.board-title {
     margin-bottom: 15px;
 }
 
+.note .vote{
+    color: inherit;
+}
+.note .vote.active{
+    color: #2196f3;
+}
+
 input.form-control.new-note {
     font-size: 14px;
 }

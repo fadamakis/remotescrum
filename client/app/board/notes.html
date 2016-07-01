@@ -2,7 +2,7 @@
     {{#each notes}}
     {{#if $eq ../categoryId categoryId}}
     <div class="note well">
-        <button type="button" class="btn btn-link btn-xs pull-right vote {{#if voted}}active{{/if}}"> {{voters.length}} <i class="glyphicon glyphicon-thumbs-up"></i></button>
+        <button type="button" class="btn btn-link btn-xs pull-right vote {{haveVoted this}}"> {{voters.length}} <i class="glyphicon glyphicon-thumbs-up"></i></button>
         <div>
             {{text}}
         </div>
