@@ -62,6 +62,11 @@ textarea {
     margin-top: 10px;
 }
 
+.alert .close {
+    position: relative;
+    top: -2px;
+}
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('/fonts/glyphicons-halflings-regular.eot');
