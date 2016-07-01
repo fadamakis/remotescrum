@@ -1,0 +1,14 @@
+header,
+footer,
+input{
+    display: none !important;
+}
+.note.well {
+    border: none;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.note .vote{
+    opacity: 1!important;
+}
