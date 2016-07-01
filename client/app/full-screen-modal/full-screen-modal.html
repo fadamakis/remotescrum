@@ -10,14 +10,16 @@
                             <img src="/logo-inverse.png" class="logo">
                             <h2>Hiya!</h2>
                             <p>You have been invited to join <b>{{retro.title}}</b>.</p>
-                            <div class="form-group fullScreenModalForm">
-                                <div class="input-group">
-                                    <input type="text" class="form-control usernameInput" placeholder="Please add your name to continue">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary joinRetro" type="button">Join {{retro.title}}</button>
-                                    </span>
+                            <form class="fullScreenModalForm">
+                                <div class="form-group ">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control usernameInput" placeholder="Please add your name to continue">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary joinRetro" type="submit">Join {{retro.title}}</button>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         {{else}}
                         {{> loader}}

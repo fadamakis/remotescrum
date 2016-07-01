@@ -18,7 +18,7 @@ Template.fullScreenModal.helpers({
 });
 
 Template.fullScreenModal.events({
-    'click .joinRetro': function(event, templateInstance) {
+    'submit .fullScreenModalForm': function(event, templateInstance) {
         event.preventDefault();
         let username = templateInstance.find(".usernameInput").value;
         if(username){
