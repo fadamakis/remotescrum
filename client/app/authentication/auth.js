@@ -3,6 +3,10 @@ Template.loginModal.events({
         $('#login-modal').modal('hide');
         $('#register-modal').modal('show');
     },
+    'click .forgot-link' : function(event, templateInstance){
+        $('#login-modal').modal('hide');
+        $('#forgot-modal').modal('show');
+    },
     'submit .login-form' : function(event, templateInstance){
         event.preventDefault();
         var email = templateInstance.find('#login-email').value.trim(),
@@ -17,6 +21,32 @@ Template.loginModal.events({
                 localStorage.setItem('username', Meteor.user().profile.fullname);
                 FlowRouter.go("/retrospectives");
             }
+        });
+    }
+});
+
+Template.forgotModal.events({
+    'click .login-link' : function(event, templateInstance){
+        $('#forgot-modal').modal('hide');
+        $('#login-modal').modal('show');
+    },
+    'submit .forgot-form' : function(event, templateInstance){
+        event.preventDefault();
+        var email = templateInstance.find('#forgot-email').value.trim();
+
+        Accounts.forgotPassword({email: email}, function(err) {
+            console.log(err);
+            if (err) {
+                $.bootstrapGrowl(err.reason, {
+                    type: 'danger'
+                });
+            } else {
+                $.bootstrapGrowl('Alright! <br> Email sent. Check your inbox!',{
+                    type: 'success'
+                });
+                $('#forgot-modal').modal('hide');
+            }
+            return false;
         });
     }
 });

@@ -1,0 +1,23 @@
+<template name="forgotModal">
+    <div class="modal fade" id="forgot-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-wrapper--auth">
+            <div class="auth-container">
+                <h4>Reset Your Password</h4>
+                <form class="forgot-form">
+                    <div class="form-group">
+                        <label class="control-label" for="forgot-email">Email</label>
+                        <input class="form-control" id="forgot-email" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Reset password</button>
+                    </div>
+                </form>
+
+                <div class="auth-help">
+                    <a href="#" class="login-link">Or login here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
