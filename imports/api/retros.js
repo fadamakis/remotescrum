@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { Notes } from '/imports/api/notes.js';
 
 export const Retros = new Mongo.Collection("Retros");
 
@@ -23,6 +24,7 @@ Meteor.methods({
     'retros.remove'(retro) {
         check(retro, Object);
         check(this.userId, retro.owner);
+        Notes.remove({retroId: retro._id});
         Retros.remove(retro._id);
     },
 });
