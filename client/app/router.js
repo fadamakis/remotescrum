@@ -1,14 +1,14 @@
 FlowRouter.route('/retrospective/:_id', {
-    name: 'retro.show',
+    name: 'sprint.show',
     action: function() {
         BlazeLayout.render("mainLayout", {content: "board", footer: "boardFooter"});
     }
 });
 
-FlowRouter.route('/retrospectives', {
+FlowRouter.route('/sprints', {
     action: function() {
         if(Meteor.userId()) {
-            BlazeLayout.render("mainLayout", {content: "retros"});
+            BlazeLayout.render("mainLayout", {content: "sprints"});
         } else {
             FlowRouter.go("/");
         }

@@ -3,13 +3,13 @@
 </head>
 <template name="board">
     {{#if Template.subscriptionsReady}}
-    {{#each retro}}
+    {{#each sprint}}
     <h4 class="board-title">{{title}}</h4>
     {{/each}}
     <div class="row">
         {{#each category in categories}}
         <div class="col-md-4">
-            <div class="panel panel-primary panel-retro">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{category.name}}</h3>
                 </div>
