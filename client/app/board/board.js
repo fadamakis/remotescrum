@@ -1,6 +1,6 @@
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Template } from 'meteor/templating';
-import { Retros } from '/imports/api/retros.js';
+import { Sprints } from '/imports/api/sprints.js';
 import { Notes } from '/imports/api/notes.js';
 
 let selectedNote = new ReactiveVar();
@@ -9,9 +9,9 @@ Template.board.onCreated( function() {
     let template = Template.instance();
     var self = this;
     self.autorun(function() {
-        let retroId = FlowRouter.getParam('_id');
-        self.subscribe('currentRetro', retroId);
-        self.subscribe('notes', retroId);
+        let sprintId = FlowRouter.getParam('_id');
+        self.subscribe('currentSprint', sprintId);
+        self.subscribe('notes', sprintId);
     });
 });
 
@@ -35,14 +35,14 @@ Template.board.helpers({
     notes() {
         return Notes.find({});
     },
-    retro() {
-        return Retros.find({});
+    sprint() {
+        return Sprints.find({});
     }
 });
 
 Template.notesTemplate.helpers({
     notes() {
-        return Notes.find({retroId : FlowRouter.getParam('_id')});
+        return Notes.find({sprintId : FlowRouter.getParam('_id')});
     },
     haveVoted(note){
         let username = localStorage.getItem('username');
@@ -57,9 +57,9 @@ Template.board.events({
             let text = event.target.value.trim();
             if(!text) return;
             let categoryId = event.target.attributes['category-id'].value;
-            let retroId = FlowRouter.getParam('_id');
+            let sprintId = FlowRouter.getParam('_id');
             let username = localStorage.getItem('username');
-            Meteor.call('notes.insert', categoryId, retroId, text, username);
+            Meteor.call('notes.insert', categoryId, sprintId, text, username);
             event.target.value = '';
         }
     },

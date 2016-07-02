@@ -5,9 +5,9 @@ import { check } from 'meteor/check';
 export const Notes = new Mongo.Collection("Notes");
 
 Meteor.methods({
-    'notes.insert'(categoryId, retroId, text, username) {
+    'notes.insert'(categoryId, sprintId, text, username) {
         check(categoryId, String);
-        check(retroId, String);
+        check(sprintId, String);
         check(username, String);
         check(text, String);
         Notes.insert({
@@ -15,7 +15,7 @@ Meteor.methods({
             createdAt: new Date(),
             updatedAt: null,
             categoryId,
-            retroId,
+            sprintId,
             addedBy: username,
             updatedBy: null,
             voters : [username]

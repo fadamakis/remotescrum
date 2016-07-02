@@ -1,18 +1,18 @@
 import { Meteor } from 'meteor/meteor';
-import { Retros } from '/imports/api/retros.js';
+import { Sprints } from '/imports/api/sprints.js';
 import { Notes } from '/imports/api/notes.js';
 import { check } from 'meteor/check';
 
-Meteor.publish( 'retros', function() {
-    return Retros.find({ owner: this.userId }, {sort: {createdAt: -1}});
+Meteor.publish( 'sprints', function() {
+    return Sprints.find({ owner: this.userId }, {sort: {createdAt: -1}});
 });
 
-Meteor.publish( 'currentRetro', function(id) {
+Meteor.publish( 'currentSprint', function(id) {
     check(id, String);
-    return Retros.find({_id: id});
+    return Sprints.find({_id: id});
 });
 
 Meteor.publish( 'notes', function(id) {
     check(id, String);
-    return Notes.find({retroId : id});
+    return Notes.find({sprintId : id});
 });

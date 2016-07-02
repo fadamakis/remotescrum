@@ -1,0 +1,74 @@
+
+<template name="sprints">
+    <div class="container">
+        {{#if Template.subscriptionsReady}}
+        <div class="create-sprint-wrapper">
+            <a href="#" class="btn btn-primary createSprint">Create new sprint</a>
+        </div>
+        {{#each sprints}}
+        <a href="{{pathFor 'sprint.show' _id=_id}}" title="{{title}}" class="card card--material">
+            {{ title }}
+            <div class="card-actions">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-link btn-sm sprint-edit"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
+                    <button type="button" class="btn btn-link btn-sm"><i class="glyphicon glyphicon-eye-open"></i> Retrospect</button>
+                </div>
+            </div>
+        </a>
+        {{else}}
+        <div class="text-center">
+            <h3>There is nothing here yet!</h3>
+            <p><a href="#" class="createSprint">Click here</a> to create your first sprint.</p>
+        </div>
+        {{/each}}
+
+        {{else}}
+        {{> loader}}
+        {{/if}}
+    </div>
+    {{>sprintModal}}
+    {{>sprintModalEdit}}
+</template>
+
+<template name="sprintModal">
+    <div class="modal fade" id="sprintModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Create a new Sprint</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="title" placeholder="Type here the title of your next sprint..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary saveSprint">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="sprintModalEdit">
+    <div class="modal fade" id="sprintModalEdit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Edit Sprint</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="title">{{selectedSprint.title}}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger pull-left btn-sm deleteSprint">Delete Sprint</button>
+                    <button type="button" class="btn btn-primary updateSprint">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

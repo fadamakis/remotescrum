@@ -1,16 +1,16 @@
-import { Retros } from '/imports/api/retros.js';
+import { Sprints } from '/imports/api/sprints.js';
 
 Template.fullScreenModal.onCreated( function() {
     var self = this;
     self.autorun(function() {
-        let retroId = FlowRouter.getParam('_id');
-        self.subscribe('currentRetro', retroId);
+        let sprintId = FlowRouter.getParam('_id');
+        self.subscribe('currentSprint', sprintId);
     });
 });
 
 Template.fullScreenModal.helpers({
-    retro() {
-        return Retros.findOne({});
+    sprint() {
+        return Sprints.findOne({});
     },
     shouldShowUsernamePrompt() {
         return !localStorage.getItem('username');
