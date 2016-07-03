@@ -1,0 +1,13 @@
+.footer.footer--landing {
+    background: #2196f3;
+    color: white;
+    text-align: center;
+}
+
+.footer.footer--landing a{
+    color: white;
+    text-decoration: none;
+}
+.footer.footer--landing a:hover {
+    opacity: .8;
+}
