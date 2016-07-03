@@ -1,10 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
+Accounts.emailTemplates.resetPassword.from = function () {
+   return "Remotescrum team <remotescrum@gmail.com>";
+};
+
 Meteor.methods({
-    sendEmail: function (to, from, subject, text) {
+    sendEmail: function (to, subject, text) {
         check(to, String);
-        check(from, String);
         check(subject, String);
         check(text, String);
 
@@ -12,7 +15,7 @@ Meteor.methods({
 
         Email.send({
             to: to,
-            from: from,
+            from: 'remotescrum@gmail.com',
             subject: subject,
             text: text
         });

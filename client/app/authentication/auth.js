@@ -1,9 +1,11 @@
 Template.loginModal.events({
     'click .register-link' : function(event, templateInstance){
+        event.preventDefault();
         $('#login-modal').modal('hide');
         $('#register-modal').modal('show');
     },
     'click .forgot-link' : function(event, templateInstance){
+        event.preventDefault();
         $('#login-modal').modal('hide');
         $('#forgot-modal').modal('show');
     },
@@ -27,6 +29,7 @@ Template.loginModal.events({
 
 Template.forgotModal.events({
     'click .login-link' : function(event, templateInstance){
+        event.preventDefault();
         $('#forgot-modal').modal('hide');
         $('#login-modal').modal('show');
     },
@@ -35,7 +38,6 @@ Template.forgotModal.events({
         var email = templateInstance.find('#forgot-email').value.trim();
 
         Accounts.forgotPassword({email: email}, function(err) {
-            console.log(err);
             if (err) {
                 $.bootstrapGrowl(err.reason, {
                     type: 'danger'
@@ -53,6 +55,7 @@ Template.forgotModal.events({
 
 Template.registerModal.events({
     'click .login-link' : function(event, templateInstance){
+        event.preventDefault();
         $('#register-modal').modal('hide');
         $('#login-modal').modal('show');
     },
