@@ -7,7 +7,7 @@ h4.board-title {
 .note.well {
     word-wrap: break-word;
     border: 1px solid #eee;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .note .vote{
@@ -21,4 +21,9 @@ h4.board-title {
 
 input.form-control.new-note {
     font-size: 14px;
+}
+
+.retro-board .panel-title{
+    font-weight: 600;
+    text-transform: uppercase;
 }
