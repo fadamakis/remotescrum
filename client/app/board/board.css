@@ -8,6 +8,7 @@ h4.board-title {
     word-wrap: break-word;
     border: 1px solid #eee;
     margin-bottom: 10px;
+    transition: border-color .3s linear;
 }
 
 .note .vote{
@@ -28,8 +29,8 @@ input.form-control.new-note {
 }
 
 .retro-board .highlight--2{
-    border-color: #ddd;
-    font-weight: 500;
+    border-color: #ccc;
+    color: #333;
 }
 
 .retro-board .highlight--3{
