@@ -23,6 +23,20 @@ input.form-control.new-note {
     font-size: 14px;
 }
 
+.retro-board .highlight--1{
+    border-color: #eee;
+}
+
+.retro-board .highlight--2{
+    border-color: #ddd;
+    font-weight: 500;
+}
+
+.retro-board .highlight--3{
+    border-color: #ccc;
+    font-weight: 600;
+}
+
 .retro-board .panel-title{
     font-weight: 600;
     text-transform: uppercase;

@@ -12,3 +12,9 @@ input{
 .note .vote{
     opacity: 1!important;
 }
+
+.retro-board .highlight--3,
+.retro-board .highlight--2{
+    border-color: #eee;
+    font-weight: normal;
+}

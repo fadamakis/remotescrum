@@ -1,7 +1,7 @@
 <template name="notesTemplate">
     {{#each notes}}
     {{#if $eq ../categoryId categoryId}}
-    <div class="note well">
+    <div class="note well {{highlight this}}">
         <button type="button" class="btn btn-link btn-xs pull-right vote {{haveVoted this}}"> {{voters.length}} <i class="glyphicon glyphicon-thumbs-up"></i></button>
         <div>
             {{text}}

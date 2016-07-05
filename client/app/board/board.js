@@ -47,6 +47,16 @@ Template.notesTemplate.helpers({
     haveVoted(note){
         let username = localStorage.getItem('username');
         return note.voters.indexOf(username) > -1 ? 'active': '';
+    },
+    highlight(note){
+        let voters = note.voters.length;
+        if (voters > 4) {
+            return 'highlight--3';
+        } else if(voters > 2) {
+            return 'highlight--2';
+        } else {
+            return 'highlight--1';
+        }
     }
 });
 
