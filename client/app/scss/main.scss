@@ -10,7 +10,6 @@ html {
 body {
     padding-top: 65px;
     margin-bottom: 45px;
-    background: #eee;
 }
 
 .logo{
@@ -42,7 +41,7 @@ textarea {
     resize: none;
 }
 .modal-header {
-    background: #0d87e9;
+    background: $brand-primary;
 }
 .modal-header h4{
     color: white;

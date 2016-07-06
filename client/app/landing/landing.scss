@@ -1,5 +1,7 @@
+@import '../scss/_variables';
+
 .subhead {
-    background: #2196f3;
+    background: $brand-primary;
     text-align: center;
 }
 

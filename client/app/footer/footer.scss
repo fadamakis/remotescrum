@@ -1,5 +1,7 @@
+@import '../scss/_variables';
+
 .footer.footer--landing {
-    background: #2196f3;
+    background: $brand-primary;
     color: white;
     text-align: center;
 }

@@ -15,11 +15,13 @@ $gray:                   #666 !default;
 $gray-light:             #bbb !default;
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
+// #4aa3df
+// #785EDD
 $brand-primary:         #2196F3 !default;
 $brand-success:         #4CAF50 !default;
-$brand-info:            #9C27B0 !default;
+$brand-info:            #3498DB !default;
 $brand-warning:         #ff9800 !default;
-$brand-danger:          #e51c23 !default;
+$brand-danger:          #c0392b !default;
 
 
 //== Scaffolding
@@ -27,7 +29,7 @@ $brand-danger:          #e51c23 !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #fff !default;
+$body-bg:               #eef0f0 !default;
 //** Global text color on `<body>`.
 $text-color:            $gray !default;
 
