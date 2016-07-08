@@ -14,14 +14,19 @@
     min-height: 100%;
     border-radius: 0;
     color: #333;
-    background: #f9f9f9;
+    background: #fefefe url("/full-bg.png") top left repeat;
     overflow:auto;
+    display: flex;
+    align-items: center;
 }
 
 .fullscreen .logo {
     height: auto
 }
 
+.fullscreen .modal-body {
+     margin: 0 auto;
+}
 .fullscreen .modal-body p {
     color: #333;
     font-size: 300%;

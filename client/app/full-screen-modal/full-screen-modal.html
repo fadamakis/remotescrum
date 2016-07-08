@@ -1,29 +1,24 @@
-
 <template name="fullScreenModal">
-    <div class="modal fade fullscreen {{#if shouldShowUsernamePrompt}} show in{{/if}}" id="fullScreenModal"  tabindex="-1">
+    <div class="modal fade fullscreen {{#if shouldShowUsernamePrompt}} show in{{/if}}" id="fullScreenModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                    <div class="container">
+                    <div>
                         {{#if Template.subscriptionsReady}}
                         <div class="jumbotron">
                             <img src="/logo-inverse.png" class="logo">
-                            <h2>Hiya!</h2>
+                            <h2>Hi there!</h2>
                             <p>You have been invited to join <b>{{sprint.title}}</b>.</p>
                             <form class="fullScreenModalForm">
-                                <div class="form-group ">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control usernameInput" placeholder="Please add your name to continue">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary joinSprint" type="submit">Join {{sprint.title}}</button>
-                                        </span>
-                                    </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control usernameInput" placeholder="Please add your name to continue">
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary btn-lg joinSprint" type="submit">Join {{sprint.title}}</button>
                                 </div>
                             </form>
                         </div>
-                        {{else}}
-                        {{> loader}}
-                        {{/if}}
+                        {{else}} {{> loader}} {{/if}}
                     </div>
                 </div>
             </div>
