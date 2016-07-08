@@ -1,3 +1,7 @@
+body {
+    padding: 0;
+}
+
 header,
 footer,
 input{
@@ -13,8 +17,9 @@ input{
     opacity: 1!important;
 }
 
-.retro-board .highlight--3,
-.retro-board .highlight--2{
+.retro-board .highlight--1,
+.retro-board .highlight--2,
+.retro-board .highlight--3{
     border-color: #eee;
-    font-weight: normal;
+    background: none;
 }
