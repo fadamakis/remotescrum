@@ -10,9 +10,12 @@ h4.board-title {
     word-wrap: break-word;
     border: 1px solid #eee;
     margin-bottom: 10px;
-    transition: border-color .3s linear;
+    transition: border-color .2s ease-in;
 }
-
+.note.well:hover {
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
 .note .vote{
     color: inherit;
 }
