@@ -30,7 +30,6 @@
     {{else}}
         {{> loader}}
     {{/if}}
-
     {{>modalTemplate}}
     {{>fullScreenModal}}
 </template>
@@ -47,17 +46,29 @@
                     <div class="form-group">
                         <textarea class="form-control" rows="3" id="name">{{selectedNote.text}}</textarea>
                     </div>
-                    <div class="text-right text-muted">
-                        {{#if selectedNote.updatedBy}}
-                            <small>Updated by {{selectedNote.updatedBy}} {{moment selectedNote.updatedAt}}</small>
-                        {{else}}
-                            <small>Added by {{selectedNote.addedBy}} {{moment selectedNote.createdAt}}</small>
-                        {{/if}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{#if selectedNote.voters}}
+                            <div class="form-group likes-section">
+                                <i class="text-info glyphicon glyphicon-thumbs-up"></i>
+                                {{#each name in selectedNote.voters}}
+                                <span class="label label-info">{{ name }}</span>
+                                {{/each}}
+                            </div>
+                            {{/if}}
+                        </div>
+                        <div class="col-md-6 text-right text-muted">
+                            {{#if selectedNote.updatedBy}}
+                                <small>Updated by {{selectedNote.updatedBy}} {{moment selectedNote.updatedAt}}</small>
+                            {{else}}
+                                <small>Added by {{selectedNote.addedBy}} {{moment selectedNote.createdAt}}</small>
+                            {{/if}}
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger pull-left btn-sm deleteNote">Remove note</button>
-                    <button type="button" class="btn btn-info saveNote">Save changes</button>
+                    <button type="button" class="btn btn-danger pull-left btn-sm deleteNote"><i class="glyphicon glyphicon-remove"></i> Remove note</button>
+                    <button type="button" class="btn btn-info saveNote"><i class="glyphicon glyphicon-ok"></i> Save changes</button>
                 </div>
             </div>
         </div>

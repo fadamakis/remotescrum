@@ -3,7 +3,7 @@
     <div class="container">
         {{#if Template.subscriptionsReady}}
         <div class="create-sprint-wrapper">
-            <a href="#" class="btn btn-primary createSprint">Create new sprint</a>
+            <a href="#" class="btn btn-info createSprint"><i class="glyphicon glyphicon-plus"></i> Create new sprint</a>
         </div>
         {{#each sprints}}
         <a href="{{pathFor 'sprint.show' _id=_id}}" title="{{title}}" class="card card--material">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info saveSprint">Create Sprint</button>
+                    <button type="button" class="btn btn-info saveSprint"><i class="glyphicon glyphicon-ok"></i> Create Sprint</button>
                 </div>
             </div>
         </div>
@@ -65,8 +65,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger pull-left btn-sm deleteSprint">Delete Sprint</button>
-                    <button type="button" class="btn btn-info updateSprint">Save changes</button>
+                    <button type="button" class="btn btn-danger pull-left btn-sm deleteSprint"><i class="glyphicon glyphicon-remove"></i>  Delete Sprint</button>
+                    <button type="button" class="btn btn-info updateSprint"><i class="glyphicon glyphicon-ok"></i> Save changes</button>
                 </div>
             </div>
         </div>

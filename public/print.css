@@ -14,7 +14,7 @@ input{
     padding: 5px;
 }
 .note .vote{
-    opacity: 1!important;
+    color: inherit;
 }
 
 .retro-board .highlight--1,
