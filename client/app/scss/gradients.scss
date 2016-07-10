@@ -1,0 +1,10 @@
+.gradient-primary{
+    background: #fd746c;
+    background: -webkit-linear-gradient(to left, #ff9068 , #fd746c);
+    background: linear-gradient(to left, #ff9068 , #fd746c);
+}
+
+.navbar-inverse,
+.modal-header {
+    @extend .gradient-primary;
+}

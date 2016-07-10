@@ -1,7 +1,8 @@
 @import '../scss/_variables';
+@import '../scss/gradients';
 
 .subhead {
-    background: $brand-primary;
+    @extend .gradient-primary;
     text-align: center;
 }
 
