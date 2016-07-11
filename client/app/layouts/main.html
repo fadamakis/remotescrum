@@ -7,7 +7,7 @@
 </head>
 <template name="mainLayout">
 
-    {{> header }}
+    {{>Template.dynamic template=header}}
     <div class="container-fluid">
         {{>Template.dynamic template=content}}
     </div>
