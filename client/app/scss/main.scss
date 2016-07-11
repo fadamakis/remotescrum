@@ -79,6 +79,11 @@ textarea {
     margin-top: 10px;
 }
 
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .alert .close {
     position: relative;
     top: -2px;
