@@ -15,7 +15,7 @@
             {{#if currentUser}}
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
+                    <li class="dropdown hidden-xs hidden-sm">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hey {{currentUser.profile.fullname}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/sprints">My Sprints</a></li>
@@ -23,6 +23,10 @@
                             <li><a href="#" class="logout">Logout</a></li>
                         </ul>
                     </li>
+                    <!-- use different menu on mobile to avoid the dropdown -->
+                    <li class="visible-xs visible-sm hidden-md hidden-lg"><a href="/sprints">My Sprints</a></li>
+                    <li role="separator" class="divider visible-xs visible-sm hidden-md hidden-lg"></li>
+                    <li class="visible-xs visible-sm hidden-md hidden-lg"><a href="#" class="logout">Logout</a></li>
                 </ul>
             </div>
             {{/if}}
