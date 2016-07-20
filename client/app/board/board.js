@@ -91,6 +91,9 @@ Template.modalTemplate.helpers({
     },
     moment(createdAt){
         return moment(createdAt).fromNow();
+    },
+    showRemove(owner){
+        return owner === localStorage.getItem('username') || Meteor.user();
     }
 });
 

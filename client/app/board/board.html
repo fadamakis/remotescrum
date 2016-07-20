@@ -67,7 +67,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    {{#if showRemove selectedNote.addedBy}}
                     <button type="button" class="btn btn-danger pull-left btn-sm deleteNote"><i class="glyphicon glyphicon-remove"></i> Remove note</button>
+                    {{/if}}
                     <button type="button" class="btn btn-info saveNote"><i class="glyphicon glyphicon-ok"></i> Save changes</button>
                 </div>
             </div>
