@@ -16,6 +16,7 @@ caching-compiler@1.0.5_1
 caching-html-compiler@1.0.6
 callback-hook@1.0.9
 check@1.2.3
+chuangbo:cookie@1.1.0
 coffeescript@1.1.2_1
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.5
@@ -49,6 +50,10 @@ localstorage@1.0.11
 logging@1.0.13_1
 meteor@1.1.15_1
 meteor-base@1.0.4
+meteorhacks:fast-render@2.14.0
+meteorhacks:inject-data@2.0.0
+meteorhacks:meteorx@1.4.1
+meteorhacks:picker@1.0.3
 meteortoys:toykit@2.2.1
 minifier-css@1.1.12_1
 minifier-js@1.1.12_1
@@ -66,6 +71,7 @@ npm-bcrypt@0.8.6_1
 npm-mongo@1.4.44_1
 observe-sequence@1.0.12
 okgrow:analytics@1.0.9
+ongoworks:spiderable@1.0.7
 ordered-dict@1.0.8
 promise@0.7.2_1
 raix:handlebar-helpers@0.2.5
