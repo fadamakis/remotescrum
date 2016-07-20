@@ -2,7 +2,10 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{pathFor '/'}}"><img src="/logo.png" class="logo" alt=""></a>
+                <a class="navbar-brand navbar-brand--effect" href="{{pathFor '/'}}"><img src="/logo.png" class="logo" alt="">
+                    <div class="mask-wrapper">
+						<div class="mask"> </div>
+					</div></a>
                 {{#if currentUser}}
                 <button type="button" class="navbar-toggle navbar-inverse collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
                   <span class="sr-only">Toggle navigation</span>
