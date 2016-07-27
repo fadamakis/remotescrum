@@ -10,11 +10,11 @@ Template.sprints.onCreated( () => {
 });
 
 Template.sprints.events({
-    'click .createSprint': function(event){
+    'click .createSprint'(event) {
         event.preventDefault();
         $('#sprintModal').modal('show');
     },
-    'click .sprint-edit': function(event, templateInstance) {
+    'click .sprint-edit'(event, templateInstance) {
         event.preventDefault();
         selectedSprint.set(this);
         $('#sprintModalEdit').modal('show');
@@ -36,7 +36,6 @@ Template.sprintModalEdit.events({
         if(!title) return;
         let sprint = selectedSprint.get();
         Meteor.call('sprints.update', sprint, title);
-        templateInstance.find("textarea").value = '';
         $('#sprintModalEdit').modal('hide');
     },
     'click .deleteSprint': function(event) {
