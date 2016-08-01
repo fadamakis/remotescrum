@@ -26,5 +26,5 @@ Meteor.methods({
         check(this.userId, sprint.owner);
         Notes.remove({sprintId: sprint._id});
         Sprints.remove(sprint._id);
-    },
+    }
 });

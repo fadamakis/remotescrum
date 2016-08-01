@@ -1,0 +1,60 @@
+<template name='plan'>
+	{{#each sprint}}
+	<h4 class="board-title">{{title}}</h4> {{/each}}
+	<div class="col col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Stories</h3>
+			</div>
+			<div class="panel-body">
+				<form class="form-inline addStoryForm pull-right">
+					<div class="form-group">
+						<input type="text" class="form-control" id="storyTitle" placeholder="Story title">
+					</div>
+					<button type="submit" class="btn btn-primary addStory">Add new story</button>
+				</form>
+				<ul class="nav nav-tabs">
+					<li class=""><a href="#all" data-toggle="tab" aria-expanded="false">All  <span class="label label-primary">{{ storiesCount 'all'}}</span></a></li>
+					<li class="active"><a href="#remaining" data-toggle="tab" aria-expanded="true">Remaining  <span class="label label-primary">{{ storiesCount 'remaining'}}</span></a></li>
+					<li class=""><a href="#completed" data-toggle="tab" aria-expanded="false">Completed <span class="label label-primary">{{ storiesCount 'completed'}}</span> </a></li>
+				</ul>
+				<div id="storiesTabContent" class="tab-content">
+					<div class="tab-pane fade active in" id="remaining">
+						{{> stories tab='remaining' }}
+					</div>
+					<div class="tab-pane fade" id="completed">
+						{{> stories tab='completed' }}
+					</div>
+					<div class="tab-pane fade" id="all">
+						{{> stories tab='all' }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Participants</h3>
+			</div>
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<span class="badge"><i class="glyphicon glyphicon-ok"></i></span>
+						Fotis
+					</li>
+					<li class="list-group-item">
+						<span class="badge"><i class="glyphicon glyphicon-minus"></i></span>
+						Fotis
+					</li>
+					<li class="list-group-item">
+						<span class="badge"><i class="glyphicon glyphicon-hourglass"></i></span>
+						Fotis
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</template>

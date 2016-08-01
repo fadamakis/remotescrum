@@ -1,0 +1,30 @@
+<template name="stories">
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Estimation</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each stories tab}}
+              <tr>
+                <td>{{title}}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><i class="glyphicon glyphicon-edit"></i></td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan='5'>
+                    <h6 class="text-center">No stories found!</h6>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</template>
