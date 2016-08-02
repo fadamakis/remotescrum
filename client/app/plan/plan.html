@@ -41,7 +41,13 @@
 			</div>
 			<div class="panel-body">
 				<ul class="list-group">
+					{{#each participants}}
 					<li class="list-group-item">
+						<span class="badge"><i class="glyphicon glyphicon-hourglass"></i></span>
+						{{username}}
+					</li>
+					{{/each}}
+					<!-- <li class="list-group-item">
 						<span class="badge"><i class="glyphicon glyphicon-ok"></i></span>
 						Fotis
 					</li>
@@ -52,7 +58,7 @@
 					<li class="list-group-item">
 						<span class="badge"><i class="glyphicon glyphicon-hourglass"></i></span>
 						Fotis
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>

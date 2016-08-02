@@ -1,5 +1,6 @@
 import { Stories } from '/imports/api/stories.js';
 import { Sprints } from '/imports/api/sprints.js';
+import { Participants } from '/imports/api/participants.js';
 
 Template.stories.helpers({
     stories(tab) {
@@ -27,6 +28,9 @@ Template.plan.helpers({
     },
     sprint() {
         return Sprints.find({});
+    },
+    participants() {
+        return Participants.find({});
     }
 });
 
@@ -45,9 +49,13 @@ Template.plan.events({
 Template.plan.onCreated( function() {
     let template = Template.instance();
     var self = this;
+    let username = localStorage.getItem('username') || 'anonymous';
+    let sprintId = FlowRouter.getParam('_id');
+    Meteor.call('participants.insert', sprintId, username);
     self.autorun(function() {
         let sprintId = FlowRouter.getParam('_id');
         self.subscribe('currentSprint', sprintId);
         self.subscribe('stories', sprintId);
+        self.subscribe('participants', sprintId);
     });
 });
