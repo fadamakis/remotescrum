@@ -18,5 +18,15 @@ Meteor.methods({
             }
         });
 
+    },
+    'participants.vote'(username, vote) {
+        check(vote, Number);
+        check(username, String);
+        Participants.update({username: username}, {
+          $set: {
+              voteStatus: "voted",
+              vote: vote
+          },
+        });
     }
 });

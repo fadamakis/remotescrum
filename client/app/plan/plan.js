@@ -31,6 +31,31 @@ Template.plan.helpers({
     },
     participants() {
         return Participants.find({});
+    },
+    votes() {
+        let votes = [
+            {
+                display: '0',
+                value: 0
+            },
+            {
+                display: '1',
+                value: 1
+            },
+            {
+                display: '2',
+                value: 2
+            },
+            {
+                display: '3',
+                value: 3
+            },
+            {
+                display: '5',
+                value: 5
+            }
+        ];
+        return votes;
     }
 });
 
@@ -43,6 +68,13 @@ Template.plan.events({
         let sprintId = FlowRouter.getParam('_id');
         Meteor.call('stories.insert', sprintId, title);
         input.value = '';
+    },
+    'click .voteStory' (event, templateInstance) {
+        event.preventDefault();
+        let vote = this.value;
+        let username = localStorage.getItem('username') || 'anonymous';
+        Meteor.call('participants.vote', username, vote);
+
     }
 });
 
