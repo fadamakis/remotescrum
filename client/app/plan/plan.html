@@ -1,19 +1,14 @@
 <template name='plan'>
 	<div class="row">
 		{{#each sprint}}
-		<h4 class="board-title">{{title}}</h4> {{/each}}
-		<div class="col col-md-8">
+			<h4 class="board-title">{{title}}</h4>
+		{{/each}}
+		<div class="col col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Stories</h3>
 				</div>
 				<div class="panel-body">
-					<form class="form-inline addStoryForm pull-right">
-						<div class="form-group">
-							<input type="text" class="form-control" id="storyTitle" placeholder="Story title">
-						</div>
-						<button type="submit" class="btn btn-primary addStory">Add new story</button>
-					</form>
 					<ul class="nav nav-tabs">
 						<li class=""><a href="#all" data-toggle="tab" aria-expanded="false">All  <span class="label label-primary">{{ storiesCount 'all'}}</span></a></li>
 						<li class="active"><a href="#remaining" data-toggle="tab" aria-expanded="true">Remaining  <span class="label label-primary">{{ storiesCount 'remaining'}}</span></a></li>
@@ -34,16 +29,58 @@
 			</div>
 		</div>
 
+		<div class="col col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					{{#if currentStory}}
+						<h5>{{ currentStory.title }}</h5>
 
-		<div class="col col-md-4">
+					{{else}}
+						<button type="submit" class="btn btn-info btn-block nextStory">Start Planning</button>
+					{{/if}}
+					{{#if allVoted}}
+						<button type="submit" class="btn btn-info btn-block nextStory">Next Story</button>
+					{{/if}}
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Add New Story</h3>
+				</div>
+				<div class="panel-body">
+					<form class="addStoryForm">
+						<div class="form-group">
+							<input type="text" class="form-control" id="storyTitle" placeholder="Story title">
+						</div>
+						<button type="submit" class="btn btn-primary btn-block addStory">Add new story</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col col-md-3">
+			{{#if currentStory}}
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+					  <button type="button" class="btn btn-primary btn-block flipCards">Flip cards</button>
+					  <button type="button" class="btn btn-primary btn-block resetVotes">Reset votes</button>
+				</div>
+			</div>
+			{{/if}}
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Participants</h3>
 				</div>
-				<div class="panel-body">
-					<ul class="list-group">
-						{{#each participants}}
-						<li class="list-group-item">
+				<ul class="list-group">
+					{{#each participants}}
+					<li class="list-group-item">
+						{{#if allVoted}}
+							<span class="badge">{{vote}}</span>
+						{{else}}
 							{{#if $eq voteStatus 'voted'}}
 								<span class="badge"><i class="glyphicon glyphicon-ok"></i></span>
 							{{else}}
@@ -53,15 +90,16 @@
 									<span class="badge"><i class="glyphicon glyphicon-hourglass"></i></span>
 								{{/if}}
 							{{/if}}
-							{{username}}
-						</li>
-						{{/each}}
-					</ul>
-				</div>
+						{{/if}}
+						{{username}}
+						<i class="glyphicon glyphicon-remove kickParticipant"></i>
+					</li>
+					{{/each}}
+				</ul>
 			</div>
 		</div>
 	</div>
-
+	{{#if currentStory}}
 	<div class="row">
 		<div class="col col-md-12">
 			{{#each votes}}
@@ -73,5 +111,5 @@
 			{{/each}}
 		</div>
 	</div>
-
+	{{/if}}
 </template>

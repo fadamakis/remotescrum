@@ -1,6 +1,16 @@
 import { Stories } from '/imports/api/stories.js';
 import { Sprints } from '/imports/api/sprints.js';
 import { Participants } from '/imports/api/participants.js';
+import { ReactiveVar } from 'meteor/reactive-var';
+
+Template.stories.events({
+    'click .removeStory' (event, templateInstance){
+        Meteor.call('stories.remove', this);
+    },
+    'click .setActiveStory' (event, templateInstance){
+        Meteor.call('stories.setActive', this);
+    }
+});
 
 Template.stories.helpers({
     stories(tab) {
@@ -11,6 +21,14 @@ Template.stories.helpers({
                 return Stories.find({estimation:{"$exists":true}});
             default:
                 return Stories.find({});
+        }
+    },
+    getStatusClass(status) {
+        switch (status) {
+            case 'active':
+                return 'success';
+            default:
+                return 'pending';
         }
     }
 });
@@ -31,6 +49,23 @@ Template.plan.helpers({
     },
     participants() {
         return Participants.find({});
+    },
+    allVoted() {
+        return !Participants.find({ voteStatus: 'pending' }).count();
+    },
+    calculateEstimation() {
+        let estimation = 0;
+
+        let participants = Participants.find({ voteStatus:"voted" });
+
+        participants.map(function(participant) {
+            estimation += participant.vote;
+        });
+
+        return Math.round(estimation / participants.count());
+    },
+    currentStory() {
+        return Stories.findOne({ status: 'active'});
     },
     votes() {
         let votes = [
@@ -73,8 +108,29 @@ Template.plan.events({
         event.preventDefault();
         let vote = this.value;
         let username = localStorage.getItem('username') || 'anonymous';
-        Meteor.call('participants.vote', username, vote);
+        let sprintId = FlowRouter.getParam('_id');
+        Meteor.call('participants.vote', sprintId, username, vote);
 
+    },
+    'click .nextStory' (event, templateInstance) {
+        event.preventDefault();
+        Meteor.call('stories.next');
+    },
+    'click .kickParticipant' (event, templateInstance) {
+        event.preventDefault();
+        let username = this.username;
+        let sprintId = FlowRouter.getParam('_id');
+        Meteor.call('participants.kick', sprintId, username);
+    },
+    'click .flipCards' (event, templateInstance) {
+        event.preventDefault();
+        let sprintId = FlowRouter.getParam('_id');
+        Meteor.call('participants.flipCards', sprintId);
+    },
+    'click .resetVotes' (event, templateInstance) {
+        event.preventDefault();
+        let sprintId = FlowRouter.getParam('_id');
+        Meteor.call('participants.resetVotes', sprintId);
     }
 });
 

@@ -11,12 +11,16 @@
         </thead>
         <tbody>
             {{#each stories tab}}
-              <tr>
+              <tr class="{{getStatusClass status}}">
                 <td>{{title}}</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
-                <td><i class="glyphicon glyphicon-edit"></i></td>
+                <td>
+                    <i class="glyphicon glyphicon-play-circle setActiveStory"></i>
+                    <i class="glyphicon glyphicon-edit"></i>
+                    <i class="glyphicon glyphicon-remove removeStory"></i>
+                </td>
             </tr>
             {{else}}
             <tr>

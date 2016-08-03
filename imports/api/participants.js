@@ -14,19 +14,60 @@ Meteor.methods({
         }, {
             $set: {
                 sprintId,
-                username
+                username,
+                voteStatus: 'pending',
+                vote: null,
             }
         });
 
     },
-    'participants.vote'(username, vote) {
+    'participants.vote'(sprintId, username, vote) {
         check(vote, Number);
         check(username, String);
-        Participants.update({username: username}, {
+        check(sprintId, String);
+        Participants.update({
+            username,
+            sprintId
+        }, {
           $set: {
               voteStatus: "voted",
               vote: vote
           },
+        });
+    },
+    'participants.resetVotes'(sprintId) {
+        check(sprintId, String);
+        Participants.update({
+            sprintId
+        }, {
+          $set: {
+              voteStatus: "pending",
+              vote: null,
+          },
+      }, {
+          multi: true
+      });
+    },
+    'participants.flipCards'(sprintId) {
+        check(sprintId, String);
+        Participants.update({
+            sprintId,
+            voteStatus: "pending",
+        }, {
+          $set: {
+              voteStatus: "voted",
+              vote: 0,
+          },
+        }, {
+            multi: true
+        });
+    },
+    'participants.kick'(sprintId, username) {
+        check(username, String);
+        check(sprintId, String);
+        Participants.remove({
+            username,
+            sprintId
         });
     }
 });
