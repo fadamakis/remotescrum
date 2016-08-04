@@ -20,14 +20,32 @@ Meteor.methods({
         check(story, Object);
         Stories.remove(story._id);
     },
+    'stories.estimate'(sprintId, estimation) {
+        check(sprintId, String);
+
+        Stories.update({
+            status: 'active',
+            sprintId
+        }, {
+            $set: {
+                estimation
+            }
+        });
+    },
     'stories.setActive'(story) {
         check(story, Object);
+        let activeStory = Stories.findOne({status: 'active'});
+        let activeStoryStatus;
+        if(activeStory.estimation) {
+            activeStoryStatus = 'completed';
+        } else {
+            activeStoryStatus = 'pending';
+        }
         Stories.update({
-            status: 'active'
+            _id: activeStory._id
         }, {
-            // TODO if it has estimation we have to make it completed
             $set: {
-                status: 'pending'
+                status: activeStoryStatus
             }
         });
 

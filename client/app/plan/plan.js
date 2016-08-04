@@ -3,6 +3,8 @@ import { Sprints } from '/imports/api/sprints.js';
 import { Participants } from '/imports/api/participants.js';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+let currentEstimation = new ReactiveVar();
+
 Template.stories.events({
     'click .removeStory' (event, templateInstance){
         Meteor.call('stories.remove', this);
@@ -33,6 +35,29 @@ Template.stories.helpers({
     }
 });
 
+let votes = [
+    {
+        display: '0',
+        value: 0
+    },
+    {
+        display: '1',
+        value: 1
+    },
+    {
+        display: '2',
+        value: 2
+    },
+    {
+        display: '3',
+        value: 3
+    },
+    {
+        display: '5',
+        value: 5
+    }
+];
+
 Template.plan.helpers({
     storiesCount(tab) {
         switch (tab) {
@@ -51,48 +76,43 @@ Template.plan.helpers({
         return Participants.find({});
     },
     allVoted() {
-        return !Participants.find({ voteStatus: 'pending' }).count();
+        let pendingVotes = Participants.find({ voteStatus: 'pending' }).count();
+        if(!pendingVotes){
+            let estimation = calculateEstimation();
+            currentEstimation.set(estimation);
+            let sprintId = FlowRouter.getParam('_id');
+            Meteor.call('stories.estimate', sprintId, estimation);
+        }
+        return !pendingVotes;
     },
-    calculateEstimation() {
-        let estimation = 0;
-
-        let participants = Participants.find({ voteStatus:"voted" });
-
-        participants.map(function(participant) {
-            estimation += participant.vote;
-        });
-
-        return Math.round(estimation / participants.count());
+    getEstimation() {
+        return currentEstimation.get();
     },
     currentStory() {
         return Stories.findOne({ status: 'active'});
     },
     votes() {
-        let votes = [
-            {
-                display: '0',
-                value: 0
-            },
-            {
-                display: '1',
-                value: 1
-            },
-            {
-                display: '2',
-                value: 2
-            },
-            {
-                display: '3',
-                value: 3
-            },
-            {
-                display: '5',
-                value: 5
-            }
-        ];
         return votes;
     }
 });
+
+function calculateEstimation(){
+    let estimation = 0;
+    let participants = Participants.find({ voteStatus:"voted" });
+
+    participants.map(function(participant) {
+        estimation += participant.vote;
+    });
+
+    estimation = Math.round(estimation / participants.count());
+
+    for (vote of votes) {
+        if(vote.value >= estimation) {
+            return vote.value;
+        }
+    }
+    return estimation;
+}
 
 Template.plan.events({
     'submit .addStoryForm' (event, templateInstance) {
@@ -114,7 +134,7 @@ Template.plan.events({
     },
     'click .nextStory' (event, templateInstance) {
         event.preventDefault();
-        Meteor.call('stories.next');
+        Meteor.call('stories.next', currentEstimation);
     },
     'click .kickParticipant' (event, templateInstance) {
         event.preventDefault();
@@ -131,6 +151,11 @@ Template.plan.events({
         event.preventDefault();
         let sprintId = FlowRouter.getParam('_id');
         Meteor.call('participants.resetVotes', sprintId);
+    },
+    'change .estimationSelect': function(event, templateInstance){
+        let sprintId = FlowRouter.getParam('_id');
+        let estimation = event.target.options[event.target.selectedIndex].value;
+        Meteor.call('stories.estimate', sprintId, estimation);
     }
 });
 

@@ -4,8 +4,6 @@
             <tr>
                 <th>Title</th>
                 <th>Estimation</th>
-                <th>Min</th>
-                <th>Max</th>
                 <th></th>
             </tr>
         </thead>
@@ -13,9 +11,11 @@
             {{#each stories tab}}
               <tr class="{{getStatusClass status}}">
                 <td>{{title}}</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                {{#if estimation}}
+                  <td>{{estimation}}</td>
+                {{else}}
+                    <td>-</td>
+                {{/if}}
                 <td>
                     <i class="glyphicon glyphicon-play-circle setActiveStory"></i>
                     <i class="glyphicon glyphicon-edit"></i>
