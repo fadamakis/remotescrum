@@ -55,8 +55,8 @@ Meteor.methods({
             voteStatus: "pending",
         }, {
           $set: {
-              voteStatus: "voted",
-              vote: 0,
+              voteStatus: "pass",
+              vote: '-',
           },
         }, {
             multi: true
