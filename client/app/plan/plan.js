@@ -4,6 +4,7 @@ import { Participants } from '/imports/api/participants.js';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 let currentEstimation = new ReactiveVar();
+let modalStory = new ReactiveVar();
 
 Template.stories.events({
     'click .removeStory' (event, templateInstance){
@@ -11,6 +12,11 @@ Template.stories.events({
     },
     'click .setActiveStory' (event, templateInstance){
         Meteor.call('stories.setActive', this);
+    },
+    'click .editStory': function(event) {
+        event.preventDefault();
+        modalStory.set(this);
+        $('#editStory').modal('show');
     }
 });
 
@@ -156,6 +162,26 @@ Template.plan.events({
         let sprintId = FlowRouter.getParam('_id');
         let estimation = event.target.options[event.target.selectedIndex].value;
         Meteor.call('stories.estimate', sprintId, estimation);
+    }
+});
+
+Template.editStory.helpers({
+    modalStory() {
+        return modalStory.get();
+    }
+});
+
+Template.editStory.events({
+    'click .saveStory': function(event, templateInstance){
+        event.stopPropagation();
+        let story = modalStory.get();
+        let newTitle = templateInstance.find("#title").value.trim();
+        let newEstimation = parseInt(templateInstance.find("#estimation").value.trim());
+        if(isNaN(newEstimation)) {
+            newEstimation = null;
+        }
+        Meteor.call('stories.update', story, newTitle, newEstimation);
+        $('#editStory').modal('hide');
     }
 });
 

@@ -16,6 +16,18 @@ Meteor.methods({
             createdAt: new Date()
         });
     },
+    'stories.update'(story, title, estimation) {
+        check(story, Object);
+        check(title, String);
+        Stories.update({
+            '_id': story._id
+        }, {
+            $set: {
+                title,
+                estimation
+            }
+        });
+    },
     'stories.remove'(story) {
         check(story, Object);
         Stories.remove(story._id);
