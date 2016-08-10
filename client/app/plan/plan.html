@@ -1,7 +1,9 @@
 <template name='plan'>
+	{{#if Template.subscriptionsReady}}
 	<div class="row">
 		{{#each sprint}}
-		<h4 class="board-title">{{title}}</h4> {{/each}}
+		<h4 class="board-title">{{title}}</h4>
+		{{/each}}
 		<div class="col col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -29,6 +31,7 @@
 		</div>
 
 		<div class="col col-md-3">
+			{{#if isSprintOwner}}
 			<div class="panel panel-default">
 				<div class="panel-body">
 					{{#if currentStory}}
@@ -57,7 +60,9 @@
 					{{/if}}
 				</div>
 			</div>
+			{{/if}}
 
+			{{#if isSprintOwner}}
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Add New Story</h3>
@@ -71,10 +76,13 @@
 					</form>
 				</div>
 			</div>
+			{{/if}}
 
 		</div>
 
 		<div class="col col-md-3">
+
+			{{#if isSprintOwner}}
 			{{#if currentStory}}
 			<div class="panel panel-default">
 				<div class="panel-body">
@@ -82,6 +90,7 @@
 					<button type="button" class="btn btn-primary btn-block resetVotes">Reset votes</button>
 				</div>
 			</div>
+			{{/if}}
 			{{/if}}
 
 			<div class="panel panel-default">
@@ -96,7 +105,9 @@
 						<span class="badge"><i class="glyphicon glyphicon-ok"></i></span> {{else}} {{#if $eq voteStatus 'pass'}}
 						<span class="badge"><i class="glyphicon glyphicon-minus"></i></span> {{else}}
 						<span class="badge"><i class="glyphicon glyphicon-hourglass"></i></span> {{/if}} {{/if}} {{/if}} {{username}}
+						{{#if isSprintOwner}}
 						<i class="glyphicon glyphicon-remove kickParticipant"></i>
+						{{/if}}
 					</li>
 					{{/each}}
 				</ul>
@@ -117,6 +128,10 @@
 	</div>
 	{{/if}}
 
+	{{else}}
+		{{> loader}}
+	{{/if}}
+
 	{{> editStory }}
-	
+
 </template>

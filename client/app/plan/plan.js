@@ -65,6 +65,9 @@ let votes = [
 ];
 
 Template.plan.helpers({
+    isSprintOwner(userId) {
+        return Sprints.findOne({}).owner === Meteor.userId();
+    },
     storiesCount(tab) {
         switch (tab) {
             case 'remaining':

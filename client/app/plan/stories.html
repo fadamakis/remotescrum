@@ -4,7 +4,9 @@
             <tr>
                 <th>Title</th>
                 <th>Estimation</th>
+                {{#if isSprintOwner}}
                 <th></th>
+                {{/if}}
             </tr>
         </thead>
         <tbody>
@@ -16,11 +18,13 @@
                 {{else}}
                     <td>-</td>
                 {{/if}}
+                {{#if isSprintOwner}}
                 <td>
                     <i class="glyphicon glyphicon-play-circle setActiveStory"></i>
                     <i class="glyphicon glyphicon-edit editStory"></i>
                     <i class="glyphicon glyphicon-remove removeStory"></i>
                 </td>
+                {{/if}}
             </tr>
             {{else}}
             <tr>
