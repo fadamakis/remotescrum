@@ -179,10 +179,7 @@ Template.editStory.events({
         event.stopPropagation();
         let story = modalStory.get();
         let newTitle = templateInstance.find("#title").value.trim();
-        let newEstimation = parseInt(templateInstance.find("#estimation").value.trim());
-        if(isNaN(newEstimation)) {
-            newEstimation = null;
-        }
+        let newEstimation = templateInstance.find("#estimation").value.trim();
         Meteor.call('stories.update', story, newTitle, newEstimation);
         $('#editStory').modal('hide');
     }
