@@ -7,10 +7,10 @@ let currentEstimation = new ReactiveVar();
 let modalStory = new ReactiveVar();
 
 Template.stories.events({
-    'click .removeStory' (event, templateInstance){
+    'click .removeStory' (event, templateInstance) {
         Meteor.call('stories.remove', this);
     },
-    'click .setActiveStory' (event, templateInstance){
+    'click .setActiveStory' (event, templateInstance) {
         Meteor.call('stories.setActive', this);
     },
     'click .editStory': function(event) {
@@ -24,9 +24,17 @@ Template.stories.helpers({
     stories(tab) {
         switch (tab) {
             case 'remaining':
-                return Stories.find({estimation:{"$exists":false}});
+                return Stories.find({
+                    estimation: {
+                        "$exists": false
+                    }
+                });
             case 'completed':
-                return Stories.find({estimation:{"$exists":true}});
+                return Stories.find({
+                    estimation: {
+                        "$exists": true
+                    }
+                });
             default:
                 return Stories.find({});
         }
@@ -41,28 +49,22 @@ Template.stories.helpers({
     }
 });
 
-let votes = [
-    {
-        display: '0',
-        value: 0
-    },
-    {
-        display: '1',
-        value: 1
-    },
-    {
-        display: '2',
-        value: 2
-    },
-    {
-        display: '3',
-        value: 3
-    },
-    {
-        display: '5',
-        value: 5
-    }
-];
+let votes = [{
+    display: '0',
+    value: 0
+}, {
+    display: '1',
+    value: 1
+}, {
+    display: '2',
+    value: 2
+}, {
+    display: '3',
+    value: 3
+}, {
+    display: '5',
+    value: 5
+}];
 
 Template.plan.helpers({
     isSprintOwner(userId) {
@@ -71,9 +73,17 @@ Template.plan.helpers({
     storiesCount(tab) {
         switch (tab) {
             case 'remaining':
-                return Stories.find({estimation:{"$exists":false}}).count();
+                return Stories.find({
+                    estimation: {
+                        "$exists": false
+                    }
+                }).count();
             case 'completed':
-                return Stories.find({estimation:{"$exists":true}}).count();
+                return Stories.find({
+                    estimation: {
+                        "$exists": true
+                    }
+                }).count();
             default:
                 return Stories.find({}).count();
         }
@@ -85,8 +95,10 @@ Template.plan.helpers({
         return Participants.find({});
     },
     allVoted() {
-        let pendingVotes = Participants.find({ voteStatus: 'pending' }).count();
-        if(!pendingVotes){
+        let pendingVotes = Participants.find({
+            voteStatus: 'pending'
+        }).count();
+        if (!pendingVotes) {
             let estimation = calculateEstimation();
             currentEstimation.set(estimation);
             let sprintId = FlowRouter.getParam('_id');
@@ -98,16 +110,20 @@ Template.plan.helpers({
         return currentEstimation.get();
     },
     currentStory() {
-        return Stories.findOne({ status: 'active'});
+        return Stories.findOne({
+            status: 'active'
+        });
     },
     votes() {
         return votes;
     }
 });
 
-function calculateEstimation(){
+function calculateEstimation() {
     let estimation = 0;
-    let participants = Participants.find({ voteStatus:"voted" });
+    let participants = Participants.find({
+        voteStatus: "voted"
+    });
 
     participants.map(function(participant) {
         estimation += participant.vote;
@@ -116,7 +132,7 @@ function calculateEstimation(){
     estimation = Math.round(estimation / participants.count());
 
     for (vote of votes) {
-        if(vote.value >= estimation) {
+        if (vote.value >= estimation) {
             return vote.value;
         }
     }
@@ -143,7 +159,8 @@ Template.plan.events({
     },
     'click .nextStory' (event, templateInstance) {
         event.preventDefault();
-        Meteor.call('stories.next', currentEstimation);
+        let sprintId = FlowRouter.getParam('_id');
+        Meteor.call('stories.next', sprintId);
     },
     'click .kickParticipant' (event, templateInstance) {
         event.preventDefault();
@@ -161,7 +178,7 @@ Template.plan.events({
         let sprintId = FlowRouter.getParam('_id');
         Meteor.call('participants.resetVotes', sprintId);
     },
-    'change .estimationSelect': function(event, templateInstance){
+    'change .estimationSelect': function(event, templateInstance) {
         let sprintId = FlowRouter.getParam('_id');
         let estimation = event.target.options[event.target.selectedIndex].value;
         Meteor.call('stories.estimate', sprintId, estimation);
@@ -175,7 +192,7 @@ Template.editStory.helpers({
 });
 
 Template.editStory.events({
-    'click .saveStory': function(event, templateInstance){
+    'click .saveStory': function(event, templateInstance) {
         event.stopPropagation();
         let story = modalStory.get();
         let newTitle = templateInstance.find("#title").value.trim();
@@ -185,7 +202,7 @@ Template.editStory.events({
     }
 });
 
-Template.plan.onCreated( function() {
+Template.plan.onCreated(function() {
     let template = Template.instance();
     var self = this;
     let username = localStorage.getItem('username') || 'anonymous';
@@ -197,4 +214,36 @@ Template.plan.onCreated( function() {
         self.subscribe('stories', sprintId);
         self.subscribe('participants', sprintId);
     });
+});
+
+
+//Once the Template is rendered, run this function which
+//  sets up JQuery UI's sortable functionality
+Template.stories.onRendered(function() {
+    this.$('.sortable-stories').sortable({
+        handle: '.handle',
+        stop: function(e, ui) {
+            // get the dragged html element and the one before
+            //   and after it
+            el = ui.item.get(0);
+            before = ui.item.prev().get(0);
+            after = ui.item.next().get(0);
+
+            if (!before) {
+                //if it was dragged into the first position grab the
+                // next element's data context and subtract one from the weight
+                newWeight = Blaze.getData(after).weight - 1;
+            } else if (!after) {
+                //if it was dragged into the last position grab the
+                //previous element's data context and add one to the weight
+                newWeight = Blaze.getData(before).weight + 1;
+            } else {
+                //else take the average of the two ranks of the previous
+                // and next elements
+                newWeight = (Blaze.getData(after).weight + Blaze.getData(before).weight) / 2;
+            }
+            //update the dragged Item's weight
+            Meteor.call('stories.rank', Blaze.getData(el)._id, newWeight);
+        }
+    })
 });

@@ -21,7 +21,11 @@ Meteor.publish('notes', function(id) {
 
 Meteor.publish('stories', function(id) {
     check(id, String);
-    return Stories.find({sprintId : id});
+    return Stories.find({sprintId : id},{
+        sort: {
+            weight: 1
+        }
+    });
 });
 
 Meteor.publish('participants', function(id) {

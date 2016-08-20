@@ -9,10 +9,23 @@ Meteor.methods({
     'stories.insert'(sprintId, title) {
         check(sprintId, String);
         check(title, String);
+
+        let lastStory = Stories.findOne({
+            sprintId
+        }, {
+            sort: {
+                weight: -1
+            }
+        });
+
+        let weight = lastStory && lastStory.weight || 0;
+        weight++;
+
         Stories.insert({
             title,
             sprintId,
             status: 'pending',
+            weight,
             createdAt: new Date()
         });
     },
@@ -41,6 +54,7 @@ Meteor.methods({
     },
     'stories.estimate'(sprintId, estimation) {
         check(sprintId, String);
+        check(estimation, Number);
 
         Stories.update({
             status: 'active',
@@ -51,9 +65,27 @@ Meteor.methods({
             }
         });
     },
+    'stories.rank'(storyId, newWeight) {
+        check(storyId, String);
+        check(newWeight, Number);
+
+        Stories.update({
+            _id: storyId
+        }, {
+            $set: {
+                weight: newWeight
+            }
+        });
+    },
     'stories.setActive'(story) {
         check(story, Object);
-        let activeStory = Stories.findOne({status: 'active'});
+        let activeStory = Stories.findOne({
+                status: 'active'
+            }, {
+                sort: {
+                    weight: -1
+                }
+            });
         let activeStoryStatus;
         if(activeStory.estimation) {
             activeStoryStatus = 'completed';
@@ -87,8 +119,10 @@ Meteor.methods({
         });
 
     },
-    'stories.next'() {
+    'stories.next'(sprintId) {
+        check(sprintId, String);
         Stories.update({
+            sprintId,
             status: 'active'
         }, {
             $set: {
@@ -96,8 +130,17 @@ Meteor.methods({
             }
         });
 
-        Stories.update({
+        let story = Stories.findOne({
+            sprintId,
             status: 'pending'
+        }, {
+            sort: {
+                weight: 1
+            }
+        });
+
+        Stories.update({
+            _id: story._id
         }, {
             $set: {
                 status: 'active'
@@ -105,6 +148,7 @@ Meteor.methods({
         });
 
         Participants.update({
+            sprintId,
             voteStatus: 'voted'
         },{
             $set: {

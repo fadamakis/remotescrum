@@ -3,22 +3,25 @@
         <thead>
             <tr>
                 <th></th>
+                <th></th>
                 <th>Title</th>
                 <th>Estimation</th>
                 {{#if isSprintOwner}}
                 <th></th>
                 {{/if}}
+                <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="sortable-stories ">
             {{#each stories tab}}
-              <tr class="{{getStatusClass status}}">
-                  <td><span class="label label-success">{{status}}</span></td>
+            <tr class="{{getStatusClass status}}">
+                <td><i class="glyphicon glyphicon-th-list handle"></i></td>
+                <td><span class="label label-success">{{status}}</span></td>
                 <td>{{title}}</td>
                 {{#if estimation}}
-                  <td>{{estimation}}</td>
+                <td>{{estimation}}</td>
                 {{else}}
-                    <td>-</td>
+                <td>-</td>
                 {{/if}}
                 <td>
                     <i class="glyphicon glyphicon-play-circle setActiveStory"></i>
