@@ -64,6 +64,30 @@ let votes = [{
 }, {
     display: '5',
     value: 5
+}, {
+    display: '8',
+    value: 8
+}, {
+    display: '13',
+    value: 13
+}, {
+    display: '21',
+    value: 21
+}, {
+    display: '34',
+    value: 34
+}, {
+    display: '55',
+    value: 55
+}, {
+    display: '89',
+    value: 89
+}, {
+    display: '?',
+    value: null
+}, {
+    display: '<img src="/coffee-icon.png" class="vote--coffee" alt="Coffee">',
+    value: null
 }];
 
 Template.plan.helpers({
@@ -122,7 +146,8 @@ Template.plan.helpers({
 function calculateEstimation() {
     let estimation = 0;
     let participants = Participants.find({
-        voteStatus: "voted"
+        voteStatus: "voted",
+        vote: { $ne: null }
     });
 
     participants.map(function(participant) {

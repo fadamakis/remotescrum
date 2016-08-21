@@ -119,9 +119,19 @@
 		<div class="col col-md-12">
 			{{#each votes}}
 			<div class="vote-card voteStory">
-				<div class="left-icon">{{display}}</div>
-				<div class="center-icon">{{display}}</div>
-				<div class="right-icon">{{display}}</div>
+				<div class="left-icon">
+				{{#if $neq value null}}
+					{{display}}
+				{{/if}}
+				&nbsp;
+				</div>
+				<div class="center-icon">{{{display}}}</div>
+				<div class="right-icon">
+					{{#if $neq value null}}
+						{{display}}
+					{{/if}}
+					&nbsp;
+				</div>
 			</div>
 			{{/each}}
 		</div>
@@ -133,7 +143,7 @@
 	{{/if}}
 
 	{{> editStory }}
-	
+
 	{{>fullScreenModal}}
 
 </template>

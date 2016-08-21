@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { Match } from 'meteor/check';
 
 export const Participants = new Mongo.Collection("Participants");
 
@@ -22,7 +23,7 @@ Meteor.methods({
 
     },
     'participants.vote'(sprintId, username, vote) {
-        check(vote, Number);
+        check(vote, Match.OneOf(Number, null));
         check(username, String);
         check(sprintId, String);
         Participants.update({
