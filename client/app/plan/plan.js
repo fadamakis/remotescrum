@@ -152,7 +152,7 @@ Template.plan.events({
     'click .voteStory' (event, templateInstance) {
         event.preventDefault();
         let vote = this.value;
-        let username = localStorage.getItem('username') || 'anonymous';
+        let username = localStorage.getItem('username');
         let sprintId = FlowRouter.getParam('_id');
         Meteor.call('participants.vote', sprintId, username, vote);
 
@@ -205,9 +205,11 @@ Template.editStory.events({
 Template.plan.onCreated(function() {
     let template = Template.instance();
     var self = this;
-    let username = localStorage.getItem('username') || 'anonymous';
     let sprintId = FlowRouter.getParam('_id');
-    Meteor.call('participants.insert', sprintId, username);
+    let username = localStorage.getItem('username');
+    if(username) {
+        Meteor.call('participants.insert', sprintId, username);
+    }
     self.autorun(function() {
         let sprintId = FlowRouter.getParam('_id');
         self.subscribe('currentSprint', sprintId);
