@@ -17,13 +17,13 @@
 					</ul>
 					<div id="storiesTabContent" class="tab-content">
 						<div class="tab-pane fade" id="remaining">
-							{{> stories tab='remaining'}}
+							{{> stories tab='remaining' isSprintOwner=isSprintOwner}}
 						</div>
 						<div class="tab-pane fade" id="completed">
-							{{> stories tab='completed'}}
+							{{> stories tab='completed' isSprintOwner=isSprintOwner}}
 						</div>
 						<div class="tab-pane fade active in" id="all">
-							{{> stories tab='all'}}
+							{{> stories tab='all' isSprintOwner=isSprintOwner}}
 						</div>
 					</div>
 				</div>
@@ -57,6 +57,17 @@
 						</div>
 					</div>
 					<button type="submit" class="btn btn-info btn-block nextStory">Next Story</button>
+					{{/if}}
+				</div>
+			</div>
+			{{else}}
+			<div class="panel panel-default">
+				<div class="panel-body">
+					{{#if currentStory}}
+					<h5>{{ currentStory.title }}</h5>
+					{{/if}}
+					{{#if allVoted}}
+					<div>Estimation: {{ getEstimation }}</div>
 					{{/if}}
 				</div>
 			</div>
