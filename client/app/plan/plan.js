@@ -80,9 +80,6 @@ let votes = [{
     display: '55',
     value: 55
 }, {
-    display: '89',
-    value: 89
-}, {
     display: '?',
     value: null
 }, {
