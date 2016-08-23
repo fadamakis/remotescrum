@@ -3,3 +3,26 @@
     position: relative;
     top: -8px;
 }
+
+@media (max-width: 480px) {
+  .sidebar {
+    display: none;
+  }
+}
+.sidebar {
+  position: fixed!important;
+  top: 51px;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color: #fff;
+  border-left: 1px solid #eee;
+}
+
+.nav-sidebar li {
+  padding: 10px 0;
+}

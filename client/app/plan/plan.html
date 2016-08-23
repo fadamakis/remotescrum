@@ -1,160 +1,148 @@
 <template name='plan'>
 	{{#if Template.subscriptionsReady}}
 	<div class="row">
-		{{#each sprint}}
-		<h4 class="board-title">{{title}}</h4>
-		{{/each}}
-		<div class="col col-md-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Stories</h3>
-				</div>
-				<div class="panel-body">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#all" data-toggle="tab" aria-expanded="true">All  <span class="label label-primary">{{ storiesCount 'all'}}</span></a></li>
-						<li class=""><a href="#remaining" data-toggle="tab" aria-expanded="false">Remaining  <span class="label label-primary">{{ storiesCount 'remaining'}}</span></a></li>
-						<li class=""><a href="#completed" data-toggle="tab" aria-expanded="false">Completed <span class="label label-primary">{{ storiesCount 'completed'}}</span> </a></li>
-					</ul>
-					<div id="storiesTabContent" class="tab-content">
-						<div class="tab-pane fade" id="remaining">
-							{{> stories tab='remaining' isSprintOwner=isSprintOwner}}
+		<div class="col-md-10">
+			<div class="row">
+				{{#each sprint}}
+				<h4 class="board-title">{{title}}</h4> {{/each}}
+				<div class="col col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Stories</h3>
 						</div>
-						<div class="tab-pane fade" id="completed">
-							{{> stories tab='completed' isSprintOwner=isSprintOwner}}
-						</div>
-						<div class="tab-pane fade active in" id="all">
-							{{> stories tab='all' isSprintOwner=isSprintOwner}}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col col-md-3">
-			{{#if isSprintOwner}}
-			<div class="panel panel-default">
-				<div class="panel-body">
-					{{#if currentStory}}
-					<h5>{{ currentStory.title }}</h5>
-					{{else}}
-					<button type="submit" class="btn btn-info btn-block nextStory">Start Planning</button>
-					{{/if}}
-					{{#if allVoted}}
-					<div class="form-horizontal">
-						<div class="form-group">
-							<label for="select" class="col-md-3 control-label">Estimation:</label>
-							<div class="col-md-9">
-								<select class="form-control estimationSelect">
-									{{#each votes}}
-										{{#if $eq value getEstimation}}
-										<option value="{{value}}" selected="selected">{{display}}</option>
-										{{else}}
-										<option value="{{value}}">{{display}}</option>
-										{{/if}}
-									{{/each}}
-								</select>
+						<div class="panel-body">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#all" data-toggle="tab" aria-expanded="true">All  <span class="label label-primary">{{ storiesCount 'all'}}</span></a></li>
+								<li class=""><a href="#remaining" data-toggle="tab" aria-expanded="false">Remaining  <span class="label label-primary">{{ storiesCount 'remaining'}}</span></a></li>
+								<li class=""><a href="#completed" data-toggle="tab" aria-expanded="false">Completed <span class="label label-primary">{{ storiesCount 'completed'}}</span> </a></li>
+							</ul>
+							<div id="storiesTabContent" class="tab-content">
+								<div class="tab-pane fade" id="remaining">
+									{{> stories tab='remaining' isSprintOwner=isSprintOwner}}
+								</div>
+								<div class="tab-pane fade" id="completed">
+									{{> stories tab='completed' isSprintOwner=isSprintOwner}}
+								</div>
+								<div class="tab-pane fade active in" id="all">
+									{{> stories tab='all' isSprintOwner=isSprintOwner}}
+								</div>
 							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-info btn-block nextStory">Next Story</button>
-					{{/if}}
 				</div>
-			</div>
-			{{else}}
-			<div class="panel panel-default">
-				<div class="panel-body">
-					{{#if currentStory}}
-					<h5>{{ currentStory.title }}</h5>
-					{{/if}}
-					{{#if allVoted}}
-					<div>Estimation: {{ getEstimation }}</div>
-					{{/if}}
-				</div>
-			</div>
-			{{/if}}
 
-			{{#if isSprintOwner}}
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Add New Story</h3>
-				</div>
-				<div class="panel-body">
-					<form class="addStoryForm">
-						<div class="form-group">
-							<input type="text" class="form-control" id="storyTitle" placeholder="Story title">
+				<div class="col col-md-3">
+					{{#if isSprintOwner}}
+					<div class="panel panel-default">
+						<div class="panel-body">
+							{{#if currentStory}}
+							<h5>{{ currentStory.title }}</h5> {{else}}
+							<button type="submit" class="btn btn-info btn-block nextStory">Start Planning</button>
+							{{/if}} {{#if allVoted}}
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="select" class="col-md-3 control-label">Estimation:</label>
+									<div class="col-md-9">
+										<select class="form-control estimationSelect">
+											{{#each votes}} {{#if $eq value getEstimation}}
+											<option value="{{value}}" selected="selected">{{display}}</option>
+											{{else}}
+											<option value="{{value}}">{{display}}</option>
+											{{/if}} {{/each}}
+										</select>
+									</div>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-info btn-block nextStory">Next Story</button>
+							{{/if}}
 						</div>
-						<button type="submit" class="btn btn-primary btn-block addStory">Add new story</button>
-					</form>
-				</div>
-			</div>
-			{{/if}}
-
-		</div>
-
-		<div class="col col-md-3">
-
-			{{#if isSprintOwner}}
-			{{#if currentStory}}
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<button type="button" class="btn btn-primary btn-block flipCards">Flip cards</button>
-					<button type="button" class="btn btn-primary btn-block resetVotes">Reset votes</button>
-				</div>
-			</div>
-			{{/if}}
-			{{/if}}
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Participants</h3>
-				</div>
-				<ul class="list-group">
-					{{#each participants}}
-					<li class="list-group-item">
-						{{#if allVoted}}
-						<span class="badge">{{vote}}</span> {{else}} {{#if $eq voteStatus 'voted'}}
-						<span class="badge"><i class="glyphicon glyphicon-ok"></i></span> {{else}} {{#if $eq voteStatus 'pass'}}
-						<span class="badge"><i class="glyphicon glyphicon-minus"></i></span> {{else}}
-						<span class="badge"><i class="glyphicon glyphicon-hourglass"></i></span> {{/if}} {{/if}} {{/if}} {{username}}
-						{{#if isSprintOwner}}
-						<i class="glyphicon glyphicon-remove kickParticipant"></i>
-						{{/if}}
-					</li>
-					{{/each}}
-				</ul>
-			</div>
-		</div>
-	</div>
-	{{#if currentStory}}
-	<div class="row">
-		<div class="col col-md-12">
-			{{#each votes}}
-			<div class="vote-card voteStory">
-				<div class="left-icon">
-				{{#if $neq value null}}
-					{{display}}
-				{{/if}}
-				&nbsp;
-				</div>
-				<div class="center-icon">{{{display}}}</div>
-				<div class="right-icon">
-					{{#if $neq value null}}
-						{{display}}
+					</div>
+					{{else}}
+					<div class="panel panel-default">
+						<div class="panel-body">
+							{{#if currentStory}}
+							<h5>{{ currentStory.title }}</h5> {{/if}} {{#if allVoted}}
+							<div>Estimation: {{ getEstimation }}</div>
+							{{/if}}
+						</div>
+					</div>
+					{{/if}} {{#if isSprintOwner}}
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Add New Story</h3>
+						</div>
+						<div class="panel-body">
+							<form class="addStoryForm">
+								<div class="form-group">
+									<input type="text" class="form-control" id="storyTitle" placeholder="Story title">
+								</div>
+								<button type="submit" class="btn btn-primary btn-block addStory">Add new story</button>
+							</form>
+						</div>
+					</div>
 					{{/if}}
-					&nbsp;
+
 				</div>
+
+				<div class="col col-md-3">
+
+					{{#if isSprintOwner}} {{#if currentStory}}
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<button type="button" class="btn btn-primary btn-block flipCards">Flip cards</button>
+							<button type="button" class="btn btn-primary btn-block resetVotes">Reset votes</button>
+						</div>
+					</div>
+					{{/if}} {{/if}}
+				</div>
+				{{#if currentStory}}
+				<div class="row">
+					<div class="col col-md-12">
+						{{#each votes}}
+						<div class="vote-card voteStory">
+							<div class="left-icon">
+								{{#if $neq value null}} {{display}} {{/if}} &nbsp;
+							</div>
+							<div class="center-icon">{{{display}}}</div>
+							<div class="right-icon">
+								{{#if $neq value null}} {{display}} {{/if}} &nbsp;
+							</div>
+						</div>
+						{{/each}}
+					</div>
+				</div>
+				{{/if}}
 			</div>
-			{{/each}}
+		</div>
+		<div class="col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li>
+					<h5>Participants</h5></li>
+				{{#each participants}}
+				<li class="">
+					<span class="badge pull-right">
+				{{#if allVoted}}
+					{{vote}}
+				{{else}}
+					{{#if $eq voteStatus 'voted'}}
+						<i class="glyphicon glyphicon-ok"></i>
+					{{else}}
+						{{#if $eq voteStatus 'pass'}}
+							<i class="glyphicon glyphicon-minus"></i>
+						{{else}}
+							<i class="glyphicon glyphicon-hourglass"></i>
+						{{/if}}
+					{{/if}}
+				{{/if}}
+				</span> {{username}} {{#if isSprintOwner}}
+					<i class="glyphicon glyphicon-remove kickParticipant"></i> {{/if}}
+				</li>
+				{{/each}}
+			</ul>
 		</div>
 	</div>
-	{{/if}}
 
-	{{else}}
-		{{> loader}}
-	{{/if}}
 
-	{{> editStory }}
-
-	{{>fullScreenModal}}
+	{{else}} {{> loader}} {{/if}} {{> editStory }} {{>fullScreenModal}}
 
 </template>
