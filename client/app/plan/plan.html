@@ -5,7 +5,7 @@
 			<div class="row">
 				{{#each sprint}}
 				<h4 class="board-title">{{title}}</h4> {{/each}}
-				<div class="col col-md-4">
+				<div class="col col-md-5">
 
 					{{#if isSprintOwner}}
 					<div class="panel panel-default">
@@ -23,56 +23,6 @@
 					</div>
 					{{/if}}
 
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Stories</h3>
-						</div>
-						<div class="panel-body">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#all" data-toggle="tab" aria-expanded="true">All  <span class="label label-primary">{{ storiesCount 'all'}}</span></a></li>
-								<li class=""><a href="#remaining" data-toggle="tab" aria-expanded="false">Remaining  <span class="label label-primary">{{ storiesCount 'remaining'}}</span></a></li>
-								<li class=""><a href="#completed" data-toggle="tab" aria-expanded="false">Completed <span class="label label-primary">{{ storiesCount 'completed'}}</span> </a></li>
-							</ul>
-							<div id="storiesTabContent" class="tab-content">
-								<div class="tab-pane fade" id="remaining">
-									{{> stories tab='remaining' isSprintOwner=isSprintOwner}}
-								</div>
-								<div class="tab-pane fade" id="completed">
-									{{> stories tab='completed' isSprintOwner=isSprintOwner}}
-								</div>
-								<div class="tab-pane fade active in" id="all">
-									{{> stories tab='all' isSprintOwner=isSprintOwner}}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col col-md-8">
-
-					{{#if currentStory}}
-					<div class="row">
-						<div class="col col-md-12">
-							{{#each votes}}
-							<div class="vote-card voteStory">
-								<div class="left-icon">
-									{{#if $neq value null}} {{display}} {{/if}} &nbsp;
-								</div>
-								<div class="center-icon">{{{display}}}</div>
-								<div class="right-icon">
-									{{#if $neq value null}} {{display}} {{/if}} &nbsp;
-								</div>
-							</div>
-							{{/each}}
-						</div>
-					</div>
-					{{/if}}
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2 sidebar">
-			<div class="row">
-				<div class="col col-md-12">
 					{{#if isSprintOwner}}
 					<div class="panel panel-default">
 						<div class="panel-body">
@@ -108,8 +58,56 @@
 						</div>
 					</div>
 					{{/if}}
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Stories</h3>
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#all" data-toggle="tab" aria-expanded="true">All  <span class="label label-primary">{{ storiesCount 'all'}}</span></a></li>
+								<li class=""><a href="#remaining" data-toggle="tab" aria-expanded="false">Remaining  <span class="label label-primary">{{ storiesCount 'remaining'}}</span></a></li>
+								<li class=""><a href="#completed" data-toggle="tab" aria-expanded="false">Completed <span class="label label-primary">{{ storiesCount 'completed'}}</span> </a></li>
+							</ul>
+							<div id="storiesTabContent" class="tab-content">
+								<div class="tab-pane fade" id="remaining">
+									{{> stories tab='remaining' isSprintOwner=isSprintOwner}}
+								</div>
+								<div class="tab-pane fade" id="completed">
+									{{> stories tab='completed' isSprintOwner=isSprintOwner}}
+								</div>
+								<div class="tab-pane fade active in" id="all">
+									{{> stories tab='all' isSprintOwner=isSprintOwner}}
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
+				<div class="col col-md-7">
+
+					{{#if currentStory}}
+					<div class="row">
+						<div class="col col-md-12">
+							{{#each votes}}
+							<div class="vote-card voteStory">
+								<div class="left-icon">
+									{{#if $neq value null}} {{display}} {{/if}} &nbsp;
+								</div>
+								<div class="center-icon">{{{display}}}</div>
+								<div class="right-icon">
+									{{#if $neq value null}} {{display}} {{/if}} &nbsp;
+								</div>
+							</div>
+							{{/each}}
+						</div>
+					</div>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 sidebar">
+			<div class="row">
 				<div class="col col-md-12">
 					{{#if isSprintOwner}}
 						{{#if currentStory}}
