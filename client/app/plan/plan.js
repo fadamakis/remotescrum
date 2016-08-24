@@ -95,15 +95,13 @@ Template.plan.helpers({
         switch (tab) {
             case 'remaining':
                 return Stories.find({
-                    estimation: {
-                        "$exists": false
+                    status: {
+                        $ne: 'voted'
                     }
                 }).count();
             case 'completed':
                 return Stories.find({
-                    estimation: {
-                        "$exists": true
-                    }
+                    status: 'voted'
                 }).count();
             default:
                 return Stories.find({}).count();
@@ -129,6 +127,15 @@ Template.plan.helpers({
     },
     getEstimation() {
         return currentEstimation.get();
+    },
+    getProgress() {
+        let remaining = Stories.find({
+            status: {
+                $ne: 'voted'
+            }
+        }).count();
+        let all = Stories.find().count();
+        return 100 -( remaining / all * 100) + '%';
     },
     currentStory() {
         return Stories.findOne({

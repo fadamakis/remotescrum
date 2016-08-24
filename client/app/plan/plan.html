@@ -21,9 +21,7 @@
 							</form>
 						</div>
 					</div>
-					{{/if}}
-
-					{{#if isSprintOwner}}
+					{{/if}} {{#if isSprintOwner}}
 					<div class="panel panel-default">
 						<div class="panel-body">
 							{{#if currentStory}}
@@ -58,6 +56,17 @@
 						</div>
 					</div>
 					{{/if}}
+
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<p>{{ storiesCount 'completed'}} / {{ storiesCount 'all'}} Stories Completed</p>
+							<div class="progress">
+								<div class="progress-bar progress-bar-success " role="progressbar" style="width: {{ getProgress }}">
+									<span class="sr-only">{{ getProgress }} Stories Complete</span>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -109,16 +118,14 @@
 		<div class="col-md-2 sidebar">
 			<div class="row">
 				<div class="col col-md-12">
-					{{#if isSprintOwner}}
-						{{#if currentStory}}
-						<div class="panel panel-default">
-							<div class="panel-body">
-								<button type="button" class="btn btn-primary btn-block flipCards">Flip cards</button>
-								<button type="button" class="btn btn-primary btn-block resetVotes">Reset votes</button>
-							</div>
+					{{#if isSprintOwner}} {{#if currentStory}}
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<button type="button" class="btn btn-primary btn-block flipCards">Flip cards</button>
+							<button type="button" class="btn btn-primary btn-block resetVotes">Reset votes</button>
 						</div>
-						{{/if}}
-					{{/if}}
+					</div>
+					{{/if}} {{/if}}
 				</div>
 			</div>
 			<ul class="nav nav-sidebar">
