@@ -128,6 +128,16 @@ Template.plan.helpers({
     getEstimation() {
         return currentEstimation.get();
     },
+    getTotalStoryPoints() {
+        var total = 0;
+
+        Stories.find({
+            status:"voted"
+        }).map(function(story) {
+          total += story.estimation;
+        });
+        return total;
+    },
     getProgress() {
         let remaining = Stories.find({
             status: {

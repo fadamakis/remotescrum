@@ -59,12 +59,18 @@
 
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<p>{{ storiesCount 'completed'}} / {{ storiesCount 'all'}} Stories Completed</p>
+							<h5>{{ storiesCount 'completed'}} / {{ storiesCount 'all'}} Stories Completed</h5>
 							<div class="progress">
 								<div class="progress-bar progress-bar-success " role="progressbar" style="width: {{ getProgress }}">
 									<span class="sr-only">{{ getProgress }} Stories Complete</span>
 								</div>
 							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h5>{{ getTotalStoryPoints }} Story points so far</h5>
 						</div>
 					</div>
 
