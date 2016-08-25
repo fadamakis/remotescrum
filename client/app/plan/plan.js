@@ -113,6 +113,9 @@ Template.plan.helpers({
     participants() {
         return Participants.find({});
     },
+    isNumber(value) {
+        return !isNaN(value);
+    },
     allVoted() {
         let pendingVotes = Participants.find({
             voteStatus: 'pending'
