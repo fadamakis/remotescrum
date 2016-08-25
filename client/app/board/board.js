@@ -78,6 +78,11 @@ Template.board.events({
         selectedNote.set(this);
         $('#modal').modal('show');
     },
+    'dblclick .vote': function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        return false;
+    },
     'click .vote': function(event) {
         event.stopPropagation();
         let username = localStorage.getItem('username');
