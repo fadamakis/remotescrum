@@ -88,7 +88,7 @@ Meteor.methods({
             });
         let activeStoryStatus;
         if(activeStory.estimation) {
-            activeStoryStatus = 'completed';
+            activeStoryStatus = 'voted';
         } else {
             activeStoryStatus = 'pending';
         }

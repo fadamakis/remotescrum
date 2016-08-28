@@ -5,6 +5,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 let currentEstimation = new ReactiveVar();
 let modalStory = new ReactiveVar();
+let finalizedVotes = new ReactiveVar();
 
 Template.stories.events({
     'click .removeStory' (event, templateInstance) {
@@ -12,6 +13,7 @@ Template.stories.events({
     },
     'click .setActiveStory' (event, templateInstance) {
         Meteor.call('stories.setActive', this);
+        finalizedVotes.set(false);
     },
     'click .editStory': function(event) {
         event.preventDefault();
@@ -131,11 +133,21 @@ Template.plan.helpers({
     getEstimation() {
         return currentEstimation.get();
     },
+    finalizedVotes() {
+        return finalizedVotes.get();
+    },
+    votingCompleted() {
+        return Stories.find({
+            status: 'pending'
+        }).count();
+    },
     getTotalStoryPoints() {
         var total = 0;
 
         Stories.find({
-            status:"voted"
+            'status': {
+                "$in": ["voted", "active"]
+            }
         }).map(function(story) {
           total += story.estimation;
         });
@@ -203,6 +215,11 @@ Template.plan.events({
         event.preventDefault();
         let sprintId = FlowRouter.getParam('_id');
         Meteor.call('stories.next', sprintId);
+        finalizedVotes.set(false);
+    },
+    'click .finalizedVotes' (event, templateInstance) {
+        event.preventDefault();
+        finalizedVotes.set(true);
     },
     'click .kickParticipant' (event, templateInstance) {
         event.preventDefault();
@@ -222,7 +239,7 @@ Template.plan.events({
     },
     'change .estimationSelect': function(event, templateInstance) {
         let sprintId = FlowRouter.getParam('_id');
-        let estimation = event.target.options[event.target.selectedIndex].value;
+        let estimation = parseInt(event.target.options[event.target.selectedIndex].value);
         Meteor.call('stories.estimate', sprintId, estimation);
     }
 });

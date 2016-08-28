@@ -27,7 +27,8 @@
 							{{#if currentStory}}
 							<h5>{{ currentStory.title }}</h5> {{else}}
 							<button type="submit" class="btn btn-info btn-block nextStory">Start Planning</button>
-							{{/if}} {{#if allVoted}}
+							{{/if}}
+							{{#if allVoted}}
 							<div class="form-horizontal">
 								<div class="form-group">
 									<label for="select" class="col-md-3 control-label">Estimation:</label>
@@ -46,7 +47,15 @@
 									</div>
 								</div>
 							</div>
+
+							{{#unless finalizedVotes}}
+							<button type="submit" class="btn btn-info btn-block finalizedVotes">Finalize Votes</button>
+							{{/unless}}
+							{{/if}}
+							{{#if votingCompleted}}
+							{{#if finalizedVotes}}
 							<button type="submit" class="btn btn-info btn-block nextStory">Next Story</button>
+							{{/if}}
 							{{/if}}
 						</div>
 					</div>
@@ -105,22 +114,31 @@
 
 				<div class="col col-md-7">
 
-					{{#if currentStory}}
+					{{#if finalizedVotes}}
+
 					<div class="row">
 						<div class="col col-md-12">
-							{{#each votes}}
-							<div class="vote-card voteStory">
-								<div class="left-icon">
-									{{#if $neq value null}} {{display}} {{/if}} &nbsp;
-								</div>
-								<div class="center-icon">{{{display}}}</div>
-								<div class="right-icon">
-									{{#if $neq value null}} {{display}} {{/if}} &nbsp;
-								</div>
-							</div>
-							{{/each}}
+							vote results
 						</div>
 					</div>
+					{{else}}
+						{{#if currentStory}}
+						<div class="row">
+							<div class="col col-md-12">
+								{{#each votes}}
+								<div class="vote-card voteStory">
+									<div class="left-icon">
+										{{#if $neq value null}} {{display}} {{/if}} &nbsp;
+									</div>
+									<div class="center-icon">{{{display}}}</div>
+									<div class="right-icon">
+										{{#if $neq value null}} {{display}} {{/if}} &nbsp;
+									</div>
+								</div>
+								{{/each}}
+							</div>
+						</div>
+						{{/if}}
 					{{/if}}
 				</div>
 			</div>
