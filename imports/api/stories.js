@@ -37,6 +37,8 @@ Meteor.methods({
         if(isNaN(parseInt(estimation))){
             estimation = null;
             voteStatus = 'pending';
+        } else {
+            estimation = parseInt(estimation);
         }
         Stories.update({
             '_id': story._id
