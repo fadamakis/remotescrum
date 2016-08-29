@@ -149,7 +149,9 @@ Template.plan.helpers({
                 "$in": ["voted", "active"]
             }
         }).map(function(story) {
-          total += story.estimation;
+            if(parseInt(story.estimation)){
+                total += story.estimation;
+            }
         });
         return total;
     },
