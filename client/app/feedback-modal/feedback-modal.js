@@ -11,7 +11,7 @@ Template.feedbackModal.events({
                     });
                 }else{
                     templateInstance.find(".feedback-textarea").value = '';
-                    $.bootstrapGrowl('Thank you! We will get back to you as soon as possible.',{
+                    $.bootstrapGrowl('We highly appreciate your feedback. Thank you!',{
                         type: 'success'
                     });
                 }
