@@ -61,9 +61,9 @@ Template.notesTemplate.helpers({
 });
 
 Template.board.events({
-    'keyup .new-note'(event, templateInstance) {
-        event.preventDefault();
-        if(event.which === 13){
+    'keydown .new-note'(event, templateInstance) {
+        if(event.which === 13 || event.which === 9){ // enter or tab
+            event.preventDefault();
             let text = event.target.value.trim();
             if(!text) return;
             let categoryId = event.target.attributes['category-id'].value;
@@ -77,6 +77,11 @@ Template.board.events({
         event.preventDefault();
         selectedNote.set(this);
         $('#modal').modal('show');
+    },
+    'dblclick .vote': function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        return false;
     },
     'click .vote': function(event) {
         event.stopPropagation();

@@ -22,6 +22,10 @@ Template.fullScreenModal.events({
         event.preventDefault();
         let username = templateInstance.find(".usernameInput").value;
         if(username){
+            // truncate long usernames
+            if(username.length > 12){
+                username = username.substring(0, 10) + '...';
+            }
             localStorage.setItem('username', username);
             $('#fullScreenModal').removeClass('in');
             setTimeout(function(){
