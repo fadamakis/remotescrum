@@ -5,7 +5,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 let currentEstimation = new ReactiveVar();
 let modalStory = new ReactiveVar();
-let finalizedVotes = new ReactiveVar();
 
 Template.stories.events({
     'click .removeStory' (event, templateInstance) {
@@ -13,7 +12,6 @@ Template.stories.events({
     },
     'click .setActiveStory' (event, templateInstance) {
         Meteor.call('stories.setActive', this);
-        finalizedVotes.set(false);
     },
     'click .editStory': function(event) {
         event.preventDefault();
@@ -133,9 +131,6 @@ Template.plan.helpers({
     getEstimation() {
         return currentEstimation.get();
     },
-    finalizedVotes() {
-        return finalizedVotes.get();
-    },
     votingCompleted() {
         return Stories.find({
             status: 'pending'
@@ -205,7 +200,7 @@ Template.plan.events({
         Meteor.call('stories.insert', sprintId, title);
         input.value = '';
     },
-    'click .voteStory' (event, templateInstance) {
+    'click .vote-card--enabled .voteStory' (event, templateInstance) {
         event.preventDefault();
         let vote = this.value;
         let username = localStorage.getItem('username');
@@ -217,11 +212,6 @@ Template.plan.events({
         event.preventDefault();
         let sprintId = FlowRouter.getParam('_id');
         Meteor.call('stories.next', sprintId);
-        finalizedVotes.set(false);
-    },
-    'click .finalizedVotes' (event, templateInstance) {
-        event.preventDefault();
-        finalizedVotes.set(true);
     },
     'click .kickParticipant' (event, templateInstance) {
         event.preventDefault();

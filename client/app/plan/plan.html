@@ -25,38 +25,35 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							{{#if currentStory}}
-							<h5>{{ currentStory.title }}</h5> {{else}}
-							<button type="submit" class="btn btn-info btn-block nextStory">Start Planning</button>
-							{{/if}}
-							{{#if allVoted}}
-							<div class="form-horizontal">
-								<div class="form-group">
-									<label for="select" class="col-md-3 control-label">Estimation:</label>
-									<div class="col-md-9">
-										<select class="form-control estimationSelect">
-											{{#each votes}}
-												{{#if isNumber display}}
-													{{#if $eq value getEstimation}}
-														<option value="{{value}}" selected="selected">{{display}}</option>
-													{{else}}
-														<option value="{{value}}">{{display}}</option>
+							<h5>{{ currentStory.title }}</h5>
+								{{#if allVoted}}
+								<div class="form-horizontal">
+									<div class="form-group">
+										<label for="select" class="col-md-3 control-label">Estimation:</label>
+										<div class="col-md-9">
+											<select class="form-control estimationSelect">
+												{{#each votes}}
+													{{#if isNumber display}}
+														{{#if $eq value getEstimation}}
+															<option value="{{value}}" selected="selected">{{display}}</option>
+														{{else}}
+															<option value="{{value}}">{{display}}</option>
+														{{/if}}
 													{{/if}}
-												{{/if}}
-											{{/each}}
-										</select>
+												{{/each}}
+											</select>
+										</div>
 									</div>
 								</div>
-							</div>
+								<button type="submit" class="btn btn-info btn-block nextStory">Next Story</button>
 
-							{{#unless finalizedVotes}}
-							<button type="submit" class="btn btn-info btn-block finalizedVotes">Finalize Votes</button>
-							{{/unless}}
-							{{/if}}
-							{{#if votingCompleted}}
-							{{#if finalizedVotes}}
-							<button type="submit" class="btn btn-info btn-block nextStory">Next Story</button>
-							{{/if}}
-							{{/if}}
+								{{/if}}
+
+								{{else}}
+								{{#if votingCompleted}}
+								<button type="submit" class="btn btn-info btn-block nextStory">Start Planning</button>
+								{{/if}}
+								{{/if}}
 						</div>
 					</div>
 					{{else}}
@@ -112,17 +109,7 @@
 					</div>
 				</div>
 
-				<div class="col col-md-7">
-
-					{{#if finalizedVotes}}
-
-					<div class="row">
-						<div class="col col-md-12">
-							vote results
-						</div>
-					</div>
-					{{else}}
-						{{#if currentStory}}
+				<div class="col col-md-7 {{#if currentStory}}vote-card--enabled {{else}} vote-card--disabled{{/if}}">
 						<div class="row">
 							<div class="col col-md-12">
 								{{#each votes}}
@@ -138,8 +125,6 @@
 								{{/each}}
 							</div>
 						</div>
-						{{/if}}
-					{{/if}}
 				</div>
 			</div>
 		</div>

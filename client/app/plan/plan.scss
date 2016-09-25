@@ -3,12 +3,8 @@
     position: relative;
     top: -8px;
 }
+@media (min-width: 980px) {
 
-@media (max-width: 480px) {
-  .sidebar {
-    display: none;
-  }
-}
 .sidebar {
   position: fixed!important;
   top: 51px;
@@ -21,6 +17,7 @@
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   background-color: #fff;
   border-left: 1px solid #eee;
+}
 }
 
 .nav-sidebar li {
