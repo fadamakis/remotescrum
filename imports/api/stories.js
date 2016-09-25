@@ -21,10 +21,22 @@ Meteor.methods({
         let weight = lastStory && lastStory.weight || 0;
         weight++;
 
+        let activeStory = Stories.findOne({
+            status: 'active',
+            sprintId,
+        });
+
+        let status;
+        if(activeStory){
+            status = 'pending';
+        } else {
+            status = 'active';
+        }
+
         Stories.insert({
             title,
             sprintId,
-            status: 'pending',
+            status,
             weight,
             createdAt: new Date()
         });
