@@ -88,19 +88,23 @@ Meteor.methods({
                     weight: -1
                 }
             });
-        let activeStoryStatus;
-        if(activeStory.estimation) {
-            activeStoryStatus = 'voted';
-        } else {
-            activeStoryStatus = 'pending';
-        }
-        Stories.update({
-            _id: activeStory._id
-        }, {
-            $set: {
-                status: activeStoryStatus
+
+        if(activeStory){
+            let activeStoryStatus;
+            if(activeStory.estimation) {
+                activeStoryStatus = 'voted';
+            } else {
+                activeStoryStatus = 'pending';
             }
-        });
+            Stories.update({
+                _id: activeStory._id
+            }, {
+                $set: {
+                    status: activeStoryStatus
+                }
+            });
+        }
+
 
         Stories.update({
             _id: story._id
