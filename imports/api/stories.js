@@ -155,7 +155,9 @@ Meteor.methods({
 
         Participants.update({
             sprintId,
-            voteStatus: 'voted'
+            voteStatus: {
+                $in: ['voted', 'pass']
+            }
         },{
             $set: {
                 voteStatus: 'pending'
