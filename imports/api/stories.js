@@ -45,12 +45,14 @@ Meteor.methods({
         check(story, Object);
         check(title, String);
         check(estimation, String);
-        let voteStatus = 'voted';
+        let status;
+        console.log(isNaN(parseInt(estimation)));
         if(isNaN(parseInt(estimation))){
             estimation = null;
-            voteStatus = 'pending';
+            status = 'pending';
         } else {
             estimation = parseInt(estimation);
+            status = 'voted';
         }
         Stories.update({
             '_id': story._id
@@ -58,7 +60,7 @@ Meteor.methods({
             $set: {
                 title,
                 estimation,
-                voteStatus
+                status
             }
         });
     },
