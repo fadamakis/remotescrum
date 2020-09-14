@@ -1,4 +1,4 @@
 node_modules/
 mup.json
-
+.deploy
 .meteor/dev_bundle
