@@ -31,6 +31,10 @@ Template.fullScreenModal.events({
             setTimeout(function(){
                  $('#fullScreenModal').removeClass('show');
             }, 150);
+            if(FlowRouter.current().route.name === "sprint.plan"){
+                let sprintId = FlowRouter.getParam('_id');
+                Meteor.call('participants.insert', sprintId, username);
+            }
         }
     }
 });

@@ -56,12 +56,7 @@
 	border-left-style: inset;
 	border-bottom-style: inset;
 }
-
-.card:hover .card-actions{
-    display: block;
-}
 .card-actions {
-    display: none;
     position: absolute;
     right: 25px;
     top: 28px;

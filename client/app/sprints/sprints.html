@@ -6,15 +6,16 @@
             <a href="#" class="btn btn-info createSprint"><i class="glyphicon glyphicon-plus"></i> Create new sprint</a>
         </div>
         {{#each sprints}}
-        <a href="{{pathFor 'sprint.show' _id=_id}}" title="{{title}}" class="card card--material">
+        <div class="card card--material">
             {{ title }}
             <div class="card-actions">
                 <div class="btn-group" role="group">
+                    <a href="{{pathFor 'sprint.plan' _id=_id}}" class="btn btn-link btn-sm"><i class="glyphicon glyphicon-blackboard"></i> Plan</a>
+                    <a href="{{pathFor 'sprint.retro' _id=_id}}" class="btn btn-link btn-sm"><i class="glyphicon glyphicon-comment"></i> Retrospect</a>
                     <button type="button" class="btn btn-link btn-sm sprint-edit"><i class="glyphicon glyphicon-pencil"></i> Edit </button>
-                    <button type="button" class="btn btn-link btn-sm"><i class="glyphicon glyphicon-eye-open"></i> Retrospect</button>
                 </div>
             </div>
-        </a>
+        </div>
         {{else}}
         <div class="row text-center">
             <h3>There is nothing here yet!</h3>

@@ -1,7 +1,14 @@
 FlowRouter.route('/retrospective/:_id', {
-    name: 'sprint.show',
+    name: 'sprint.retro',
     action: function() {
         BlazeLayout.render("mainLayout", {content: "board", header: "header", footer: "boardFooter"});
+    }
+});
+
+FlowRouter.route('/plan/:_id', {
+    name: 'sprint.plan',
+    action: function() {
+        BlazeLayout.render("mainLayout", {content: "plan", header: "header", footer: "boardFooter"});
     }
 });
 

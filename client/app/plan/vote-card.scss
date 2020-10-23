@@ -1,0 +1,42 @@
+.vote-card--disabled .vote-card {
+    opacity: 0.5;
+}
+.vote-card {
+    display: inline-block;
+    margin: 0 15px 15px 0;
+    padding: 5px;
+    width: 130px;
+    background: url("/gplaypattern.png") center center;
+    // background: #fff;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.4s ease-out, box-shadow 0.2s ease-out;
+}
+
+.vote-card--enabled .vote-card:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+.vote-card .left-icon {
+    text-align: left;
+    color: #888;
+    padding-bottom: 5px;
+}
+.vote-card .center-icon {
+    text-align: center;
+    font-size: 46px;
+    font-weight: 300;
+    color: #131b23;
+    border: 1px solid #ddd;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 2px;
+    margin: auto 16px;
+}
+.vote-card .right-icon {
+    text-align: left;
+    color: #888;
+    padding-bottom: 5px;
+    transform: rotate(-180deg);
+}

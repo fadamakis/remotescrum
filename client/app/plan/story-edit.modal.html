@@ -1,0 +1,33 @@
+<template name="editStory">
+    <div class="modal fade" id="editStory">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Edit Story</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="title">Story title</label>
+                            <div class="col-md-10">
+                                <input id="title" name="title" value="{{modalStory.title}}" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="estimation">Estimation</label>
+                            <div class="col-md-10">
+                                <input id="estimation" name="estimation" value="{{modalStory.estimation}}" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info saveStory"><i class="glyphicon glyphicon-ok"></i> Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

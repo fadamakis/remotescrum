@@ -61,6 +61,7 @@ momentjs:moment@2.13.1
 mongo@1.1.9_1
 mongo-id@1.0.5
 mrt:bootstrap-growl@0.1.4
+mrt:jquery-ui@1.9.2
 msavin:mongol@1.6.2
 npm-bcrypt@0.8.6_1
 npm-mongo@1.4.44_1
