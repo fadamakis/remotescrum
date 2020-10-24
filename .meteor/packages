@@ -4,33 +4,35 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-base             # Packages every Meteor app needs to have
-mobile-experience       # Packages for a great mobile UX
-mongo                   # The database Meteor supports right now
+meteor-base@1.4.0             # Packages every Meteor app needs to have
+mobile-experience@1.1.0       # Packages for a great mobile UX
+mongo@1.10.0                   # The database Meteor supports right now
 blaze-html-templates    # Compile .html files into Meteor Blaze views
-reactive-var            # Reactive variable for tracker
+reactive-var@1.0.11            # Reactive variable for tracker
 jquery                  # Helpful client-side library
-tracker                 # Meteor's client-side reactive programming library
+tracker@1.2.0                 # Meteor's client-side reactive programming library
 
-standard-minifier-css   # CSS minifier run for production mode
-standard-minifier-js    # JS minifier run for production mode
-es5-shim                # ECMAScript 5 compatibility for older browsers.
-ecmascript              # Enable ECMAScript2015+ syntax in app code
+standard-minifier-css@1.6.1   # CSS minifier run for production mode
+standard-minifier-js@2.6.0    # JS minifier run for production mode
+es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers.
+ecmascript@0.14.3              # Enable ECMAScript2015+ syntax in app code
 
 msavin:mongol
 kadira:flow-router
 kadira:blaze-layout
-session
+session@1.2.0
 themeteorchef:html5-sortable
 arillo:flow-router-helpers
 raix:handlebar-helpers
 ian:accounts-ui-bootstrap-3
-accounts-base
-accounts-password
+accounts-base@1.7.0
+accounts-password@1.6.2
 mrt:bootstrap-growl
 momentjs:moment
 okgrow:analytics
-email
-fourseven:scss
-reywood:bootstrap3-sass
+email@2.0.0
 mrt:jquery-ui
+shell-server
+dynamic-import
+underscore
+fourseven:scss
