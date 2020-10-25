@@ -36,4 +36,4 @@ shell-server
 dynamic-import
 underscore
 fourseven:scss
-SSLforce-ssl
+force-ssl
