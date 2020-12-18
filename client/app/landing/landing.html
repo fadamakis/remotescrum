@@ -1,61 +1,136 @@
 <template name="landing">
-    <div class="landing">
+  <div class="landing">
+    <section class="hero">
+      <header class="container">
+        <img src="/logo.png" width="278" height="53" alt="Remote Scrum logo" />
+      </header>
+
+      <div class="hero-content container">
+        <div class="hero-content-text">
+          <h2>
+            The Best Tool <br />
+            for Remote <span class="typewriting">Retrospectives</span>
+          </h2>
+          <p>Plan, collaborate and improve one sprint at the time.</p>
+        </div>
+
         <section class="text-center">
-            <img src="/logo-inverse.png" alt="Remote Scrum logo">
-            <h2 class="page-header">The Best Tool for Remote <span class="typewriting">Retrospectives</span></h2>
-            <p>
-                {{#if currentUser}}
-                <a href="/sprints" class="btn btn-info btn-lg">My Dashboard</a>
-                {{else}}
-                <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#login-modal">Login</a>
-                <a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#register-modal">Register (for
-                    free)</a>
-                {{/if}}
-            </p>
+          <p>
+            {{#if currentUser}}
+            <a href="/sprints" class="btn btn-info btn-lg">My Dashboard</a>
+            {{else}}
+            <a
+              href="#"
+              class="btn btn-default btn-lg"
+              data-toggle="modal"
+              data-target="#login-modal"
+              >Login</a
+            >
+            <a
+              href="#"
+              class="btn btn-info btn-lg"
+              data-toggle="modal"
+              data-target="#register-modal"
+              >Register (for free)</a
+            >
+            {{/if}}
+          </p>
         </section>
+      </div>
+    </section>
 
-        <section class="row">
-            <img src="/promo.png" class="img-responsive center-block" alt="The best tool for remote scrum">
-        </section>
+    <section class="feature container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Remote Planning</h3>
+          <p>
+            Sprint Planning answers the following:
+            <ul>
+              <li>What can be delivered in the Increment resulting from the upcoming Sprint?</li>
+              <li>How will the work needed to deliver the Increment be achieved?</li>
+            </ul>
+            Making this work in a remote setup is challenging. 
+            Remote scrum offers a simple and elegant way of remote teams to vote on stories using a fibonacci 
+            deck of cards and makes sure that everyone is on same page.
+            
+          </p>
+        </div>
+        <div class="col-md-8">
+          <img
+            src="/landing/remote-planning.svg"
+            class="img-responsive"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
 
-        <section class="row subhead">
-            <p class="lead">PLAN. <i class="glyphicon glyphicon-menu-right"></i> SPRINT. <i
-                    class="glyphicon glyphicon-menu-right"></i> DEMO. <i class="glyphicon glyphicon-menu-right"></i>
-                RETROSPECT.</p>
-        </section>
+    <section class="feature container">
+      <div class="row">
+        <div class="col-md-8">
+          <img
+            src="/landing/remote-retrospective.svg"
+            class="img-responsive"
+            alt=""
+          />
+        </div>
+        <div class="col-md-4">
+          <h3>Remote Planning</h3>
+          <p>
+            No matter how good a Scrum team is, there is always opportunity to
+            improve. Although a good Scrum team will be constantly looking for
+            improvement opportunities, the team should set aside a brief,
+            dedicated period at the end of each sprint to deliberately reflect
+            on how they are doing and to find ways to improve. This occurs
+            during the sprint retrospective.
+          </p>
+        </div>
+      </div>
+    </section>
 
-        <section class="container improve">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img src="/improve.svg" alt="Improve graph" class="img-fluid" width="180">
-                        </div>
+    <section class="container improve"></section>
 
-                        <div class="col-md-8">
-                            <div class="section-title">
-                                <h4 class="title mb-4">The best way to improve.</h4>
-                                <p class="">No matter how good a Scrum team is, there is always opportunity to
-                                    improve. Although a good
-                                    Scrum team will be constantly looking for improvement opportunities, the team
-                                    should set
-                                    aside a brief, dedicated period at the end of each sprint to deliberately
-                                    reflect on how
-                                    they are doing and to find ways to improve. This occurs during the sprint
-                                    retrospective.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row text-center">
-                {{#if currentUser}}
-                <a href="/sprints" class="btn btn-info btn-lg">My Dashboard</a>
-                {{else}}
-                <a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#register-modal">Get
-                    started now</a>
-                {{/if}}
-            </div>
-        </section>
-    </div>
+    <section class="join-us">
+      <div class="container">
+        <div class="d-flex">
+          <div class="flex-1">
+            <h4>Ready to get started?</h4>
+            <p>Join now for free!</p>
+          </div>
+
+          <div class="d-flex align-center">
+            {{#if currentUser}}
+            <a href="/sprints" class="btn btn-info btn-lg">My Dashboard</a>
+            {{else}}
+            <a
+              href="#"
+              class="btn btn-info btn-lg"
+              data-toggle="modal"
+              data-target="#register-modal"
+              >Get started now</a
+            >
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="landing">
+      <div class="container">
+        <div class="">
+          &copy; 2017 Remote Scrum
+          <div class="pull-right">
+            <a
+              href=""
+              class="send-feedback"
+              data-toggle="modal"
+              data-target="#feedbackModal"
+            >
+              Send feedback &nbsp;
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
