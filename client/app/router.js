@@ -24,6 +24,6 @@ FlowRouter.route('/sprints', {
 
 FlowRouter.route('/', {
     action: function() {
-        BlazeLayout.render("mainLayout", {content: "landing", footer: "landingFooter"});
+        BlazeLayout.render("homeLayout", {content: "landing"});
     }
 });
