@@ -2,8 +2,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Template } from 'meteor/templating';
 import { Sprints } from '/imports/api/sprints.js';
 import { Notes } from '/imports/api/notes.js';
+import { NotesSorting } from './notesSorting'
 
-let selectedNote = new ReactiveVar();
+const selectedNote = new ReactiveVar();
+const notesSorter = new NotesSorting()
 
 Template.board.onCreated( function() {
     let template = Template.instance();
@@ -37,12 +39,17 @@ Template.board.helpers({
     },
     sprint() {
         return Sprints.find({});
+    },
+    sortIconClass(categoryId) {
+        return notesSorter.sortIcon(categoryId)
     }
 });
 
 Template.notesTemplate.helpers({
     notes() {
-        return Notes.find({sprintId : FlowRouter.getParam('_id')});
+        const notes = Notes.find({sprintId : FlowRouter.getParam('_id')}, { sort: { _id: 1 }}).fetch();
+
+        return notesSorter.sort(notes, this.categoryId)
     },
     haveVoted(note){
         let username = localStorage.getItem('username');
@@ -59,6 +66,7 @@ Template.notesTemplate.helpers({
         }
     }
 });
+
 
 Template.board.events({
     'keydown .new-note'(event, templateInstance) {
@@ -87,6 +95,10 @@ Template.board.events({
         event.stopPropagation();
         let username = localStorage.getItem('username');
         Meteor.call('notes.vote', this, username);
+    },
+    'click .sort': function(event) {
+        const categoryId = event.target.attributes['category-id'].value;
+        notesSorter.nextSortDirection(categoryId)
     }
 });
 
