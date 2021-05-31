@@ -11,7 +11,10 @@
         <div class="col-md-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{category.name}}</h3>
+                    <h3 class="panel-title">
+                        {{category.name}}
+                        <i category-id="{{category._id}}" class="{{ sortIconClass(category._id) }}" title="Sort by votes"></i>
+                    </h3>
                 </div>
                 <div class="panel-body">
                     {{> notesTemplate categoryId=category._id }}
