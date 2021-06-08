@@ -87,8 +87,10 @@ Template.registerModal.events({
           })
         } else {
           localStorage.setItem('username', fullname)
-          FlowRouter.go('/sprints')
           $('#register-modal').modal('hide')
+          setTimeout(function () {
+            FlowRouter.go('/sprints')
+          }, 400)
         }
       }
     )
