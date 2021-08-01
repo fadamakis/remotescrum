@@ -47,7 +47,7 @@ Template.board.helpers({
 
 Template.notesTemplate.helpers({
     notes() {
-        const notes = Notes.find({sprintId : FlowRouter.getParam('_id')}, { sort: { _id: 1 }}).fetch();
+        const notes = Notes.find({sprintId : FlowRouter.getParam('_id')}).fetch();
 
         return notesSorter.sort(notes, this.categoryId)
     },
