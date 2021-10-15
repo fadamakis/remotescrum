@@ -8,7 +8,7 @@
 
 Making retrospectives work in a remote setup is challenging. Remote scrum offers a simple and elegant way of remote teams to vote on stories using a fibonacci deck of cards and makes sure that everyone is on same page. As well as drive your retrospectives using a simple and elegant board.
 
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui-org/material-ui/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/fadamakis/remotescrum/blob/master/LICENSE)
 
 </div>
 
