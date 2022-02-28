@@ -91,6 +91,11 @@ Template.board.events({
         event.preventDefault();
         return false;
     },
+    'click .edit': function(event) {
+      event.preventDefault();
+      selectedNote.set(this);
+      $('#modal').modal('show');
+    },
     'click .vote': function(event) {
         event.stopPropagation();
         let username = localStorage.getItem('username');

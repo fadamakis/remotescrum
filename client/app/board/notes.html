@@ -3,6 +3,7 @@
     {{#if $eq ../categoryId categoryId}}
     <div class="note well {{highlight this}}">
         <button type="button" class="btn btn-link btn-xs pull-right vote {{haveVoted this}}"> {{voters.length}} <i class="glyphicon glyphicon-thumbs-up"></i></button>
+        <button type="button" class="btn btn-link btn-xs pull-right edit" aria-label="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
         <div>
             {{text}}
         </div>
