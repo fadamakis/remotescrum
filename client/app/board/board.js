@@ -71,18 +71,28 @@ Template.notesTemplate.helpers({
 });
 
 
+function submitNote(target) {
+    let text = target.value.trim();
+    if(!text) return;
+    let categoryId = target.attributes['category-id'].value;
+    let sprintId = FlowRouter.getParam('_id');
+    let username = localStorage.getItem('username');
+    Meteor.call('notes.insert', categoryId, sprintId, text, username);
+    target.value = '';
+}
+
+
 Template.board.events({
-    'keydown .new-note'(event, templateInstance) {
+    'keydown .new-note'(event) {
         if(event.which === 13 || event.which === 9){ // enter or tab
             event.preventDefault();
-            let text = event.target.value.trim();
-            if(!text) return;
-            let categoryId = event.target.attributes['category-id'].value;
-            let sprintId = FlowRouter.getParam('_id');
-            let username = localStorage.getItem('username');
-            Meteor.call('notes.insert', categoryId, sprintId, text, username);
-            event.target.value = '';
+            submitNote(event.target)
         }
+    },
+    'submit form.submit-note'(event) {
+        event.preventDefault();
+        const target = event.target[0]
+        submitNote(target)
     },
     'dblclick .well': function(event) {
         event.preventDefault();

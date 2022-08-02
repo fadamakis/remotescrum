@@ -32,6 +32,11 @@ h4.board-title {
 input.form-control.new-note {
     font-size: 14px;
 }
+
+.submit-note button {
+    color: $gray-light;
+}
+
 .likes-section .glyphicon{
     top: 3px;
 }
