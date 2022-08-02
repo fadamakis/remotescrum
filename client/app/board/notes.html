@@ -5,7 +5,7 @@
         <button type="button" class="btn btn-link btn-xs pull-right vote {{haveVoted this}}"> {{voters.length}} <i class="glyphicon glyphicon-thumbs-up"></i></button>
     
         <div>
-            {{text}}      
+            [{{this.addedBy}}]: {{text}}
             {{#if showEdit }}
             <button type="button" class="btn btn-link btn-xs edit" aria-label="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
             {{/if}}
