@@ -55,6 +55,9 @@ Template.notesTemplate.helpers({
         let username = localStorage.getItem('username');
         return note.voters.indexOf(username) > -1 ? 'active': '';
     },
+    showEdit(){
+        return this.addedBy === localStorage.getItem('username')
+    },
     highlight(note){
         let voters = note.voters.length;
         if (voters > 4) {
