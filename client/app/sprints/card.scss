@@ -13,7 +13,9 @@
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-right: 200px;
+    @media (min-width: 480px) {
+        padding-right: 255px;
+    }
 }
 
 .card:hover{
@@ -57,7 +59,13 @@
 	border-bottom-style: inset;
 }
 .card-actions {
-    position: absolute;
+    @media (min-width: 480px) {
+        position: absolute;
+    }
     right: 25px;
     top: 28px;
+    .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
