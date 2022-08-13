@@ -18,16 +18,17 @@
                 </div>
                 <div class="panel-body">
                     {{> notesTemplate categoryId=category._id }}
-                    <form class="submit-note input-group">
+                    <div class="submit-note input-group">
                         <input
                         type="text"
+                        autocomplete="off"
                         class="form-control new-note"
                         category-id="{{category._id}}"
                         placeholder="Type your thoughts here and press enter">
                         <span class="input-group-btn">
-                            <button type="submit" class="btn btn-link btn-xs" aria-label="Submit" title="Submit"><i class="glyphicon glyphicon-send"></i></button>
+                            <button type="button" class="btn btn-link btn-xs" aria-label="Submit" title="Submit"><i class="glyphicon glyphicon-send"></i></button>
                         </span>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
