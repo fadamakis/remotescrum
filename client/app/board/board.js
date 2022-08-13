@@ -97,6 +97,9 @@ Template.board.events({
     },
     'dblclick .well': function (event) {
         event.preventDefault();
+        if (!Meteor.user()) {
+            return
+        }
         selectedNote.set(this);
         $('#modal').modal('show');
     },
