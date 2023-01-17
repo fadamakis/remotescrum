@@ -24,8 +24,8 @@ session@1.2.0
 themeteorchef:html5-sortable
 arillo:flow-router-helpers
 raix:handlebar-helpers
-accounts-base@2.1.0
-accounts-password@2.1.0
+accounts-base
+accounts-password
 mrt:bootstrap-growl
 momentjs:moment
 okgrow:analytics
@@ -36,3 +36,4 @@ dynamic-import@0.7.1
 underscore@1.0.10
 fourseven:scss
 force-ssl@1.1.0
+accounts-ui
